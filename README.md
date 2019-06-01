@@ -1,32 +1,77 @@
 # Simple Code
 
-## Responsiveness very izi
-#### widget(size: 250),
+Plugin made to make development faster and easier
 
-## Animated Navigator with 1 line
-### navigator(duration: Duration(milliseconds: 800),page: new Page2(),navFrom: NavFrom.rigth,curves: Curves.elasticOut);
+# Functions
+Responsiveness izi
+```dart
+Container(
+height: sC.widget(size: 250),
+width: sC.widget(size: 250),
+)
+```
 
-## Getting Started
+Expanded Icon and Text
+```dart
+sC.expandedText(new Text("My Text")); 
+sC.expandedIcon(new Icon(Icons.wifi));
+```
 
-### Just create a new SimpleCode inside Widget build()
+All Color types
+```dart
+sC.color(0xffffffff); 
+sC.color("ffffff"); 
+sC.color("#ffffff"); 
+sC.color("rgb(255, 255, 255)"); 
+sC.color("rgb(255, 255, 255,1.0)"); 
+``` 
 
-### SimpleCode simpleCode = new SimpleCode(context: context);
-You can change the standard screen size: SimpleCode simpleCode = new SimpleCode(context: context,heigthEmulator: 640,widthEmulator: 360);
-heigthEmulator is a size of prototipe heigth
-widthEmulator is a size of prototipe width
+Animated navigator with very simples
+```dart
+navigator(duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut); 
+``` 
 
 # To use:
 
+## Import the package
+To use this plugin, follow the [plugin installation instructions](https://pub.dev/packages/simple_code#-installing-tab-).
+
+## Use the plugin
+Add the following import to your Dart code:
+```dart
+import 'package:simple_code/simple_code.dart';
+```
+# Getting Started
+
+Just create a new SimpleCode inside Widget build()
+
+```dart
+SimpleCode sC = new SimpleCode(context: context);
+``` 
+You can change the standard screen size: 
+```dart
+SimpleCode sC = new SimpleCode(context: context,heigthEmulator: 640,widthEmulator: 360);
+``` 
+heigthEmulator is a size of prototipe heigth
+widthEmulator is a size of prototipe width
+
+
 ## Color
-simpleCode.color(0xffffffff); 
+```dart
+sC.color(0xffffffff); 
+``` 
 Types Accepted: 0xffffffff, "ffffff", "#ffffff", "rgb(255, 255, 255)", "rgb(255, 255, 255,1.0)"
 
 ## Text
-simpleCode.expandedText(new Text("My Text")); 
+```dart
+sC.expandedText(new Text("My Text")); 
+``` 
 You can change max and min font Size
 
 ## Navigator
-simpleCode.navigator(duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut);
+```dart
+sC.navigator(duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut);
+``` 
 You can choose one or two NavFrom, to match animations
 navFrom: NavFrom.rigth, secondNavFrom: NavFrom.fade is other than navFrom: NavFrom.fade, secondNavFrom: NavFrom.rigth
 
@@ -38,11 +83,17 @@ Types:
     pop, push, pushReplacement
 
 ## Icons
-new Expanded(child: simpleCode.expandedIcon(new Icon(Icons.wifi))); 
+```dart
+new Expanded(child: sC.expandedIcon(new Icon(Icons.wifi))); 
+``` 
 or
-simpleCode.expandedIcon(new Icon(Icons.wifi));
+```dart
+sC.expandedIcon(new Icon(Icons.wifi));
+``` 
 or
-new Icon(Icons.youtube_searched_for, size: simpleCode.widget(size: 50));
+```dart
+new Icon(Icons.youtube_searched_for, size: sC.widget(size: 50));
+``` 
 to responsive icon without expanded
 
-Yes, it's that easy.
+### Yes, it's that easy.
