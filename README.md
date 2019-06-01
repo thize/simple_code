@@ -48,14 +48,16 @@ Just create a new SimpleCode inside Widget build()
 ```dart
 SimpleCode sC = new SimpleCode(context: context);
 ``` 
+heigthEmulator is a size of prototipe heigth and
+widthEmulator is a size of prototipe width
+```dart
+640 (height) and 360 (width) are the default Android screen size in Adobe XD.
+Change this to the screen size used in the prototype.
+``` 
+
 You can change the standard screen size: 
 ```dart
 SimpleCode sC = new SimpleCode(context: context,heigthEmulator: 640,widthEmulator: 360);
-``` 
-heigthEmulator is a size of prototipe heigth\n
-widthEmulator is a size of prototipe width
-```dart
-640(heigth) and 360(width) is\nthe standard screen size of Android on Adobe XD,
 ``` 
 
 ## Color
@@ -75,15 +77,27 @@ You can change max and min font Size
 sC.navigator(duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut);
 ``` 
 You can choose one or two NavFrom, to match animations
-navFrom: NavFrom.rigth, secondNavFrom: NavFrom.fade is other than navFrom: NavFrom.fade, secondNavFrom: NavFrom.rigth
+```dart
+navFrom: NavFrom.rigth, secondNavFrom: NavFrom.fade 
+is other than
+navFrom: NavFrom.fade, secondNavFrom: NavFrom.rigth
+``` 
 
 Animations:
-    fade, left, rigth, bottom, top, scale, rotation,
+```dart
+fade, left, rigth, bottom, top, scale, rotation,
+``` 
 Curves:
-    Curves.(all)
-Types:
-    pop, push, pushReplacement
+```dart
+ All types of Curves
+ Ex: Curves.easeIn
+``` 
 
+Types:
+    
+```dart
+ pop, push, pushReplacement
+``` 
 ## Icons
 ```dart
 new Expanded(child: sC.expandedIcon(new Icon(Icons.wifi))); 
