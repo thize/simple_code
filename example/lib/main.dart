@@ -14,7 +14,7 @@ class Home extends StatelessWidget {
 class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SimpleCode util = new SimpleCode(context: context);
+    SimpleCode util = new SimpleCode(context: context,heigthEmulator: 640,widthEmulator: 360);
     return new Scaffold(
         body: Center(
       child: new Column(
