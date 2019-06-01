@@ -52,9 +52,11 @@ You can change the standard screen size:
 ```dart
 SimpleCode sC = new SimpleCode(context: context,heigthEmulator: 640,widthEmulator: 360);
 ``` 
-heigthEmulator is a size of prototipe heigth
+heigthEmulator is a size of prototipe heigth\n
 widthEmulator is a size of prototipe width
-
+```dart
+640(heigth) and 360(width) is\nthe standard screen size of Android on Adobe XD,
+``` 
 
 ## Color
 ```dart
