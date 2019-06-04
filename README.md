@@ -1,13 +1,13 @@
 # Simple Code
 
-Plugin made to make development faster and easier
+Make Responsive and Development Faster and Easier
 
 # Functions
-Responsiveness izi
+Responsive and izi :)
 ```dart
 Container(
-height: sC.widget(size: 250),
-width: sC.widget(size: 250),
+height: sC.size(250),
+width: sC.size(250),
 )
 ```
 
@@ -70,6 +70,10 @@ Types Accepted: 0xffffffff, "ffffff", "#ffffff", "rgb(255, 255, 255)", "rgb(255,
 ```dart
 sC.expandedText(new Text("My Text")); 
 ``` 
+```dart
+new Text("My Text",style:new TextStyle(fontSize:sC.size(15))); 
+``` 
+
 You can change max and min font Size
 
 ## Navigator
@@ -108,7 +112,7 @@ sC.expandedIcon(new Icon(Icons.wifi));
 ``` 
 or
 ```dart
-new Icon(Icons.youtube_searched_for, size: sC.widget(size: 50));
+new Icon(Icons.youtube_searched_for, size: sC.size(50));
 ``` 
 to responsive icon without expanded
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_code/simple_code.dart';
+
 void main() => runApp(new Home());
 
 class Home extends StatelessWidget {
@@ -14,7 +15,8 @@ class Home extends StatelessWidget {
 class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SimpleCode util = new SimpleCode(context: context,heigthEmulator: 640,widthEmulator: 360);
+    SimpleCode util = new SimpleCode(
+        context: context, heigthEmulator: 640, widthEmulator: 360);
     return new Scaffold(
         body: Center(
       child: new Column(
@@ -34,8 +36,8 @@ class Page1 extends StatelessWidget {
   InkWell navigator(SimpleCode util) {
     return InkWell(
       child: Container(
-        height: util.widget(size: 100),
-        width: util.widget(size: 100),
+        height: util.size(50.0),
+        width: util.size(50.0),
         alignment: Alignment.center,
         color: util.color("#aafaff"),
         child: util.expandedText(new Text(
@@ -59,8 +61,8 @@ class Page1 extends StatelessWidget {
 
   Container responsiveContainerWithExpandedText(SimpleCode responsive) {
     return Container(
-      height: responsive.widget(size: 250),
-      width: responsive.widget(size: 250),
+      height: responsive.size(50.0),
+      width: responsive.size(50.0),
       color: Colors.red,
       alignment: Alignment.center,
       child: responsive.expandedText(new Text(
@@ -75,13 +77,13 @@ class Page1 extends StatelessWidget {
       new Expanded(child: responsive.expandedIcon(new Icon(Icons.wifi)));
 
   Icon responsiveIcon(SimpleCode responsive) =>
-      new Icon(Icons.youtube_searched_for, size: responsive.widget(size: 50));
+      new Icon(Icons.youtube_searched_for, size: responsive.size(50.0));
 
   Container responsiveContainerWithExpandedIcon(SimpleCode responsive) {
     return new Container(
       color: Colors.yellow,
-      height: responsive.widget(size: 50),
-      width: responsive.widget(size: 50),
+      height: responsive.size(50.0),
+      width: responsive.size(50.0),
       child: responsive.expandedIcon(new Icon(Icons.hd, color: Colors.red)),
     );
   }

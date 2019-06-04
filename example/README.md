@@ -1,115 +1,110 @@
-# Simple Code
-
-Plugin made to make development faster and easier
-
-# Functions
-Responsiveness izi
 ```dart
-Container(
-height: sC.widget(size: 250),
-width: sC.widget(size: 250),
-)
-```
-
-Expanded Icon and Text
-```dart
-sC.expandedText(new Text("My Text")); 
-sC.expandedIcon(new Icon(Icons.wifi));
-```
-
-All Color types
-```dart
-sC.color(0xffffffff); 
-sC.color("ffffff"); 
-sC.color("#ffffff"); 
-sC.color("rgb(255, 255, 255)"); 
-sC.color("rgb(255, 255, 255,1.0)"); 
-``` 
-
-Animated navigator with very simples
-```dart
-navigator(duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut); 
-``` 
-
-# To use:
-
-## Import the package
-To use this plugin, follow the [plugin installation instructions](https://pub.dev/packages/simple_code#-installing-tab-).
-
-## Use the plugin
-Add the following import to your Dart code:
-```dart
+import 'package:flutter/material.dart';
 import 'package:simple_code/simple_code.dart';
-```
-# Getting Started
 
-Just create a new SimpleCode inside Widget build()
+void main() => runApp(new Home());
 
-```dart
-SimpleCode sC = new SimpleCode(context: context);
-``` 
-heigthEmulator is a size of prototipe heigth and
-widthEmulator is a size of prototipe width
-```dart
-640 (height) and 360 (width) are the default Android screen size in Adobe XD.
-Change this to the screen size used in the prototype.
-``` 
+class Home extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: new Page1(),
+    );
+  }
+}
 
-You can change the standard screen size: 
-```dart
-SimpleCode sC = new SimpleCode(context: context,heigthEmulator: 640,widthEmulator: 360);
-``` 
+class Page1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    SimpleCode util = new SimpleCode(
+        context: context, heigthEmulator: 640, widthEmulator: 360);
+    return new Scaffold(
+        body: Center(
+      child: new Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          navigator(util),
+          responsiveContainerWithExpandedIcon(util),
+          responsiveIcon(util),
+          expandedIcon(util),
+          responsiveContainerWithExpandedText(util),
+          expandedText(util),
+        ],
+      ),
+    ));
+  }
 
-## Color
-```dart
-sC.color(0xffffffff); 
-``` 
-Types Accepted: 0xffffffff, "ffffff", "#ffffff", "rgb(255, 255, 255)", "rgb(255, 255, 255,1.0)"
+  InkWell navigator(SimpleCode util) {
+    return InkWell(
+      child: Container(
+        height: util.size(50.0),
+        width: util.size(50.0),
+        alignment: Alignment.center,
+        color: util.color("#aafaff"),
+        child: util.expandedText(new Text(
+            "Util Navigator\nNavType.push\nNavFrom.rigth\nSecondNavFrom.fade")),
+      ),
+      onTap: () {
+        util.navigator(
+          duration: Duration(milliseconds: 800),
+          page: new Page2(),
+          navFrom: NavFrom.rigth,
+          secondNavFrom: NavFrom.fade,
+          navType: NavType.push,
+          curves: Curves.elasticOut,
+        );
+      },
+    );
+  }
 
-## Text
-```dart
-sC.expandedText(new Text("My Text")); 
-``` 
-You can change max and min font Size
+  Expanded expandedText(SimpleCode responsive) =>
+      Expanded(child: responsive.expandedText(new Text("Expanded Text")));
 
-## Navigator
-```dart
-sC.navigator(duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut);
-``` 
-You can choose one or two NavFrom, to match animations
-```dart
-navFrom: NavFrom.rigth, secondNavFrom: NavFrom.fade 
-is other than
-navFrom: NavFrom.fade, secondNavFrom: NavFrom.rigth
-``` 
+  Container responsiveContainerWithExpandedText(SimpleCode responsive) {
+    return Container(
+      height: responsive.size(50.0),
+      width: responsive.size(50.0),
+      color: Colors.red,
+      alignment: Alignment.center,
+      child: responsive.expandedText(new Text(
+        "Text Container",
+        maxLines: 2,
+        textAlign: TextAlign.center,
+      )),
+    );
+  }
 
-Animations:
-```dart
-fade, left, rigth, bottom, top, scale, rotation,
-``` 
-Curves:
-```dart
- All types of Curves
- Ex: Curves.easeIn
-``` 
+  expandedIcon(SimpleCode responsive) =>
+      new Expanded(child: responsive.expandedIcon(new Icon(Icons.wifi)));
 
-Types:
-    
-```dart
- pop, push, pushReplacement
-``` 
-## Icons
-```dart
-new Expanded(child: sC.expandedIcon(new Icon(Icons.wifi))); 
-``` 
-or
-```dart
-sC.expandedIcon(new Icon(Icons.wifi));
-``` 
-or
-```dart
-new Icon(Icons.youtube_searched_for, size: sC.widget(size: 50));
-``` 
-to responsive icon without expanded
+  Icon responsiveIcon(SimpleCode responsive) =>
+      new Icon(Icons.youtube_searched_for, size: responsive.size(50.0));
 
-### Yes, it's that easy.
+  Container responsiveContainerWithExpandedIcon(SimpleCode responsive) {
+    return new Container(
+      color: Colors.yellow,
+      height: responsive.size(50.0),
+      width: responsive.size(50.0),
+      child: responsive.expandedIcon(new Icon(Icons.hd, color: Colors.red)),
+    );
+  }
+}
+
+class Page2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    SimpleCode util = new SimpleCode(context: context);
+    return Scaffold(
+      backgroundColor: Colors.red,
+      body: new Center(
+        child: new FlatButton(
+          child: new Text("pop"),
+          onPressed: () {
+            util.navigator(navType: NavType.pop);
+          },
+        ),
+      ),
+    );
+  }
+}
+``` 

@@ -2,20 +2,20 @@ part of simple_code;
 
 class SimpleCode {
   final BuildContext context;
-  final heigthEmulator;
-  final widthEmulator;
+  final double heigthEmulator;
+  final double widthEmulator;
   SimpleCode(
       {@required this.context,
       this.heigthEmulator = 640.0,
       this.widthEmulator = 360.0});
-  expandedIcon(Icon icon, {maxSize = double.maxFinite, double minSize = 2}) {
+  expandedIcon(Icon icon, {double maxSize = double.maxFinite, double minSize = 2.0}) {
     return new LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        double size = min(constraints.maxHeight, constraints.maxWidth);
-        if (size < minSize) {
-          size = minSize;
-        } else if (size > maxSize) {
-          size = maxSize;
+        double tamanho = min(constraints.maxHeight, constraints.maxWidth);
+        if (tamanho < minSize) {
+          tamanho = minSize;
+        } else if (tamanho > maxSize) {
+          tamanho = maxSize;
         }
         return new Icon(
           icon.icon,
@@ -23,8 +23,8 @@ class SimpleCode {
           key: icon.key,
           semanticLabel: icon.semanticLabel,
           textDirection: icon.textDirection,
-          size: widget(
-            size: size,
+          size: size(
+            tamanho,
             heigthEmu: MediaQuery.of(context).size.height,
             widthEmu: MediaQuery.of(context).size.width,
           ),
@@ -37,7 +37,7 @@ class SimpleCode {
     Text textWidget, {
     AutoSizeGroup group,
     double maxFontSize = double.infinity,
-    double minFontSize = 6,
+    double minFontSize = 6.0,
     Widget overflowReplacement,
     List<double> presetFontSizes,
     double stepGranularity = 1,
@@ -45,7 +45,7 @@ class SimpleCode {
   }) {
     TextStyle textStyle = new TextStyle(fontSize: double.maxFinite);
     if (textWidget.style != null) {
-      textStyle.merge(textWidget.style);
+      textStyle = textStyle.merge(textWidget.style);
     }
     return new AutoSizeText(
       textWidget.data,
@@ -70,8 +70,8 @@ class SimpleCode {
     );
   }
 
-  widget({
-    @required double size,
+  size(
+    double size, {
     double heigthEmu,
     double widthEmu,
   }) {
@@ -118,7 +118,7 @@ class SimpleCode {
       secondNavFrom: secondNavFrom,
       navType: navType,
       page: page,
-      curve:curves,
+      curve: curves,
     );
   }
 }
