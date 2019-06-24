@@ -8,7 +8,8 @@ class SimpleCode {
       {@required this.context,
       this.heigthEmulator = 640.0,
       this.widthEmulator = 360.0});
-  expandedIcon(Icon icon, {double maxSize = double.maxFinite, double minSize = 2.0}) {
+  expandedIcon(Icon icon,
+      {double maxSize = double.maxFinite, double minSize = 2.0}) {
     return new LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         double tamanho = min(constraints.maxHeight, constraints.maxWidth);
@@ -117,6 +118,23 @@ class SimpleCode {
       navFrom: navFrom,
       secondNavFrom: secondNavFrom,
       navType: navType,
+      page: page,
+      curve: curves,
+    );
+  }
+
+  RoutedPage route(
+      {Duration duration,
+      NavFrom navFrom = NavFrom.rigth,
+      NavFrom secondNavFrom,
+      NavType navType = NavType.push,
+      @required Widget page,
+      Curve curves = Curves.linear}) {
+    return _animatedRoute(
+      context,
+      duration: duration,
+      navFrom: navFrom,
+      secondNavFrom: secondNavFrom,
       page: page,
       curve: curves,
     );

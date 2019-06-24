@@ -1,3 +1,8 @@
+## 1.1.2
+
+* Fix Curves
+* Added route generator
+
 ## 1.1.1
 
 * Android X

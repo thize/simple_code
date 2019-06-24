@@ -1,6 +1,10 @@
 part of simple_code;
 
-enum NavType { pop, push, pushReplacement }
+enum NavType {
+  pop,
+  push,
+  pushReplacement,
+}
 
 enum NavFrom {
   fade,
@@ -39,11 +43,31 @@ _customNavigator(
           page: page,
           duration: duration,
           navFrom: navFrom,
+          curve: curve,
           secondNavFrom: secondNavFrom));
     }
   } else {
     print("Without page");
   }
+}
+
+RoutedPage _animatedRoute(
+  context, {
+  Widget page,
+  NavFrom navFrom = NavFrom.rigth,
+  NavFrom secondNavFrom,
+  Duration duration,
+  Curve curve = Curves.linear,
+}) {
+  if (duration == null) {
+    duration = new Duration(milliseconds: 200);
+  }
+  return RoutedPage(
+      page: page,
+      duration: duration,
+      navFrom: navFrom,
+      secondNavFrom: secondNavFrom,
+      curve: curve);
 }
 
 class RoutedPage extends PageRouteBuilder {
@@ -82,32 +106,32 @@ class RoutedPage extends PageRouteBuilder {
 _returnFrom(child, animation, NavFrom navFrom, curve, {secondNavFrom}) {
   switch (navFrom) {
     case NavFrom.scale:
-      return _scale(animation, child, secondNavFrom,curve);
+      return _scale(animation, child, secondNavFrom, curve);
       break;
     case NavFrom.rigth:
-      return _rigth(animation, child, 1, 0, secondNavFrom,curve);
+      return _rigth(animation, child, 1, 0, secondNavFrom, curve);
       break;
     case NavFrom.left:
-      return _rigth(animation, child, -1, 0, secondNavFrom,curve);
+      return _rigth(animation, child, -1, 0, secondNavFrom, curve);
       break;
     case NavFrom.top:
-      return _rigth(animation, child, 0, -1, secondNavFrom,curve);
+      return _rigth(animation, child, 0, -1, secondNavFrom, curve);
       break;
     case NavFrom.bottom:
-      return _rigth(animation, child, 0, 1, secondNavFrom,curve);
+      return _rigth(animation, child, 0, 1, secondNavFrom, curve);
       break;
     case NavFrom.fade:
-      return _fade(animation, child, secondNavFrom,curve);
+      return _fade(animation, child, secondNavFrom, curve);
       break;
     case NavFrom.rotation:
-      return _rotation(animation, child, secondNavFrom,curve);
+      return _rotation(animation, child, secondNavFrom, curve);
       break;
     default:
       throw ("Invalid navFrom");
   }
 }
 
-_rigth(animation, child, double dx, double dy, secondNavFrom,curve) {
+_rigth(animation, child, double dx, double dy, secondNavFrom, curve) {
   return new SlideTransition(
     position: Tween<Offset>(
       begin: Offset(dx, dy),
@@ -115,16 +139,16 @@ _rigth(animation, child, double dx, double dy, secondNavFrom,curve) {
     ).animate(
       CurvedAnimation(
         parent: animation,
-        curve:curve,
+        curve: curve,
       ),
     ),
     child: secondNavFrom != null
-        ? _returnFrom(child, animation, secondNavFrom,curve)
+        ? _returnFrom(child, animation, secondNavFrom, curve)
         : child,
   );
 }
 
-_rotation(animation, child, secondNavFrom,curve) {
+_rotation(animation, child, secondNavFrom, curve) {
   return RotationTransition(
     turns: Tween<double>(
       begin: 0.0,
@@ -136,12 +160,12 @@ _rotation(animation, child, secondNavFrom,curve) {
       ),
     ),
     child: secondNavFrom != null
-        ? _returnFrom(child, animation, secondNavFrom,curve)
+        ? _returnFrom(child, animation, secondNavFrom, curve)
         : child,
   );
 }
 
-_scale(animation, child, secondNavFrom,Curve curve) {
+_scale(animation, child, secondNavFrom, Curve curve) {
   return new ScaleTransition(
     scale: Tween<double>(
       begin: 0.0,
@@ -153,16 +177,16 @@ _scale(animation, child, secondNavFrom,Curve curve) {
       ),
     ),
     child: secondNavFrom != null
-        ? _returnFrom(child, animation, secondNavFrom,curve)
+        ? _returnFrom(child, animation, secondNavFrom, curve)
         : child,
   );
 }
 
-_fade(animation, child, secondNavFrom,curve) {
+_fade(animation, child, secondNavFrom, curve) {
   return FadeTransition(
     opacity: animation,
     child: secondNavFrom != null
-        ? _returnFrom(child, animation, secondNavFrom,curve)
+        ? _returnFrom(child, animation, secondNavFrom, curve)
         : child,
   );
 }
