@@ -15,36 +15,35 @@ class Home extends StatelessWidget {
 class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SimpleCode util = new SimpleCode(
-        context: context, heigthEmulator: 640, widthEmulator: 360);
+	setSc(context);
     return new Scaffold(
         body: Center(
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          navigator(util),
-          responsiveContainerWithExpandedIcon(util),
-          responsiveIcon(util),
-          expandedIcon(util),
-          responsiveContainerWithExpandedText(util),
-          expandedText(util),
+          mynavigator(),
+          responsiveContainerWithExpandedIcon(),
+          responsiveIcon(),
+          myexpandedIcon(),
+          responsiveContainerWithExpandedText(),
+          myexpandedText(),
         ],
       ),
     ));
   }
 
-  InkWell navigator(SimpleCode util) {
+  InkWell mynavigator() {
     return InkWell(
       child: Container(
-        height: util.size(50.0),
-        width: util.size(50.0),
+        height: hsz(50.0),
+        width: wsz(50.0),
         alignment: Alignment.center,
-        color: util.color("#aafaff"),
-        child: util.expandedText(new Text(
+        color: Colors.red,
+        child: expandedText(new Text(
             "Util Navigator\nNavType.push\nNavFrom.rigth\nSecondNavFrom.fade")),
       ),
       onTap: () {
-        util.navigator(
+        navigator(
           duration: Duration(milliseconds: 800),
           page: new Page2(),
           navFrom: NavFrom.rigth,
@@ -56,16 +55,16 @@ class Page1 extends StatelessWidget {
     );
   }
 
-  Expanded expandedText(SimpleCode responsive) =>
-      Expanded(child: responsive.expandedText(new Text("Expanded Text")));
+  Expanded myexpandedText() =>
+      Expanded(child: expandedText(new Text("Expanded Text")));
 
-  Container responsiveContainerWithExpandedText(SimpleCode responsive) {
+  Container responsiveContainerWithExpandedText() {
     return Container(
-      height: responsive.size(50.0),
-      width: responsive.size(50.0),
+      height: hsz(50.0),
+      width: wsz(50.0),
       color: Colors.red,
       alignment: Alignment.center,
-      child: responsive.expandedText(new Text(
+      child: expandedText(new Text(
         "Text Container",
         maxLines: 2,
         textAlign: TextAlign.center,
@@ -73,18 +72,18 @@ class Page1 extends StatelessWidget {
     );
   }
 
-  expandedIcon(SimpleCode responsive) =>
-      new Expanded(child: responsive.expandedIcon(new Icon(Icons.wifi)));
+  myexpandedIcon() =>
+      new Expanded(child: expandedIcon(new Icon(Icons.wifi)));
 
-  Icon responsiveIcon(SimpleCode responsive) =>
-      new Icon(Icons.youtube_searched_for, size: responsive.size(50.0));
+  Icon responsiveIcon() =>
+      new Icon(Icons.youtube_searched_for, size: sz(50.0));
 
-  Container responsiveContainerWithExpandedIcon(SimpleCode responsive) {
+  Container responsiveContainerWithExpandedIcon() {
     return new Container(
       color: Colors.yellow,
-      height: responsive.size(50.0),
-      width: responsive.size(50.0),
-      child: responsive.expandedIcon(new Icon(Icons.hd, color: Colors.red)),
+      height: hsz(50.0),
+      width: wsz(50.0),
+      child: expandedIcon(new Icon(Icons.hd, color: Colors.red)),
     );
   }
 }
@@ -92,14 +91,14 @@ class Page1 extends StatelessWidget {
 class Page2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SimpleCode util = new SimpleCode(context: context);
+    setSc(context);
     return Scaffold(
       backgroundColor: Colors.red,
       body: new Center(
         child: new FlatButton(
           child: new Text("pop"),
           onPressed: () {
-            util.navigator(navType: NavType.pop);
+            navigator(navType: NavType.pop);
           },
         ),
       ),

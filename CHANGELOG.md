@@ -1,3 +1,13 @@
+## 2.0.0
+* Colors removed
+* Added globalContext
+* sC.size(50) to sz(50)
+* SimpleCode sc = new SimpleCode(context); to setSc(context);
+* sz(50) to  hsz(50), wsz(50) or sz(50)
+* sC.navigator() to > navigator()
+* sC.expandedText() to expandedText()
+* sC.expandedIcon() to expandedIcon()
+
 ## 1.1.2
 
 * Fix Curves

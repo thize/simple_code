@@ -5,12 +5,12 @@ part of simple_code;
 /// All size constraints as well as maxLines are taken into account. If the text
 /// overflows anyway, you should check if the parent widget actually constraints
 /// the size of this widget.
-class AutoSizeText extends StatefulWidget {
-  /// Creates a [AutoSizeText] widget.
+class _AutoSizeText extends StatefulWidget {
+  /// Creates a [_AutoSizeText] widget.
   ///
   /// If the [style] argument is null, the text will use the style from the
   /// closest enclosing [DefaultTextStyle].
-  const AutoSizeText(
+  const _AutoSizeText(
     this.data, {
     Key key,
     this.style,
@@ -31,12 +31,12 @@ class AutoSizeText extends StatefulWidget {
     this.maxLines,
     this.semanticsLabel,
   })  : assert(data != null,
-            'A non-null String must be provided to a AutoSizeText widget.'),
+            'A non-null String must be provided to a _AutoSizeText widget.'),
         textSpan = null,
         super(key: key);
 
-  /// Creates a [AutoSizeText] widget with a [TextSpan].
-  const AutoSizeText.rich(
+  /// Creates a [_AutoSizeText] widget with a [TextSpan].
+  const _AutoSizeText.rich(
     this.textSpan, {
     Key key,
     this.style,
@@ -57,7 +57,7 @@ class AutoSizeText extends StatefulWidget {
     this.maxLines,
     this.semanticsLabel,
   })  : assert(textSpan != null,
-            'A non-null TextSpan must be provided to a AutoSizeText.rich widget.'),
+            'A non-null TextSpan must be provided to a _AutoSizeText.rich widget.'),
         data = null,
         super(key: key);
 
@@ -119,11 +119,11 @@ class AutoSizeText extends StatefulWidget {
   /// **Important:** PresetFontSizes have to be in descending order.
   final List<double> presetFontSizes;
 
-  /// Synchronizes the size of multiple [AutoSizeText]s.
+  /// Synchronizes the size of multiple [_AutoSizeText]s.
   ///
-  /// If you want multiple [AutoSizeText]s to have the same text size, give all
+  /// If you want multiple [_AutoSizeText]s to have the same text size, give all
   /// of them the same [AutoSizeGroup] instance. All of them will have the
-  /// size of the smallest [AutoSizeText]
+  /// size of the smallest [_AutoSizeText]
   final AutoSizeGroup group;
 
   /// How the text should be aligned horizontally.
@@ -215,7 +215,7 @@ class AutoSizeText extends StatefulWidget {
   _AutoSizeTextState createState() => _AutoSizeTextState();
 }
 
-class _AutoSizeTextState extends State<AutoSizeText> {
+class _AutoSizeTextState extends State<_AutoSizeText> {
   @override
   initState() {
     super.initState();
@@ -226,7 +226,7 @@ class _AutoSizeTextState extends State<AutoSizeText> {
   }
 
   @override
-  void didUpdateWidget(AutoSizeText oldWidget) {
+  void didUpdateWidget(_AutoSizeText oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.group != widget.group) {
@@ -245,7 +245,7 @@ class _AutoSizeTextState extends State<AutoSizeText> {
         style = defaultTextStyle.style.merge(widget.style);
       }
       if (style.fontSize == null) {
-        style = style.copyWith(fontSize: AutoSizeText._defaultFontSize);
+        style = style.copyWith(fontSize: _AutoSizeText._defaultFontSize);
       }
 
       var maxLines = widget.maxLines ?? defaultTextStyle.maxLines;

@@ -32,14 +32,14 @@ _customNavigator(
       duration = new Duration(milliseconds: 300);
     }
     if (navType == NavType.push) {
-      Navigator.of(context).push(RoutedPage(
+      Navigator.of(context).push(_RoutedPage(
           page: page,
           duration: duration,
           navFrom: navFrom,
           secondNavFrom: secondNavFrom,
           curve: curve));
     } else if (navType == NavType.pushReplacement) {
-      Navigator.of(context).pushReplacement(RoutedPage(
+      Navigator.of(context).pushReplacement(_RoutedPage(
           page: page,
           duration: duration,
           navFrom: navFrom,
@@ -51,7 +51,7 @@ _customNavigator(
   }
 }
 
-RoutedPage _animatedRoute(
+_RoutedPage _animatedRoute(
   context, {
   Widget page,
   NavFrom navFrom = NavFrom.rigth,
@@ -62,7 +62,7 @@ RoutedPage _animatedRoute(
   if (duration == null) {
     duration = new Duration(milliseconds: 200);
   }
-  return RoutedPage(
+  return _RoutedPage(
       page: page,
       duration: duration,
       navFrom: navFrom,
@@ -70,14 +70,14 @@ RoutedPage _animatedRoute(
       curve: curve);
 }
 
-class RoutedPage extends PageRouteBuilder {
+class _RoutedPage extends PageRouteBuilder {
   final Widget page;
   final Duration duration;
   final NavFrom navFrom;
   final NavFrom secondNavFrom;
   final Curve curve;
 
-  RoutedPage(
+  _RoutedPage(
       {this.page, this.duration, this.navFrom, this.secondNavFrom, this.curve})
       : super(
           pageBuilder: (

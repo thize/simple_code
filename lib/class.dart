@@ -1,14 +1,14 @@
 part of simple_code;
 
-class SimpleCode {
+class _SimpleCode {
   final BuildContext context;
   final double heigthEmulator;
   final double widthEmulator;
-  SimpleCode(
+  _SimpleCode(
       {@required this.context,
       this.heigthEmulator = 640.0,
       this.widthEmulator = 360.0});
-  expandedIcon(Icon icon,
+  _expandedIcon(Icon icon,
       {double maxSize = double.maxFinite, double minSize = 2.0}) {
     return new LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
@@ -24,17 +24,13 @@ class SimpleCode {
           key: icon.key,
           semanticLabel: icon.semanticLabel,
           textDirection: icon.textDirection,
-          size: size(
-            tamanho,
-            heigthEmu: MediaQuery.of(context).size.height,
-            widthEmu: MediaQuery.of(context).size.width,
-          ),
+          size: _size(tamanho),
         );
       },
     );
   }
 
-  Widget expandedText(
+  Widget _expandedText(
     Text textWidget, {
     AutoSizeGroup group,
     double maxFontSize = double.infinity,
@@ -48,7 +44,7 @@ class SimpleCode {
     if (textWidget.style != null) {
       textStyle = textStyle.merge(textWidget.style);
     }
-    return new AutoSizeText(
+    return new _AutoSizeText(
       textWidget.data,
       overflow: textWidget.overflow,
       key: textWidget.key,
@@ -71,20 +67,17 @@ class SimpleCode {
     );
   }
 
-  size(
-    double size, {
-    double heigthEmu,
-    double widthEmu,
-  }) {
-    if (heigthEmu == null) {
-      heigthEmu = heigthEmulator;
-    }
-    if (widthEmu == null) {
-      widthEmu = widthEmulator;
-    }
+  _size(double size, {bool w = false, bool h = false}) {
     try {
-      size = min((size / heigthEmu) * MediaQuery.of(context).size.height,
-          (size / widthEmu) * MediaQuery.of(context).size.width);
+      double sw = (size / widthEmulator) * MediaQuery.of(context).size.width;
+      double sh = (size / heigthEmulator) * MediaQuery.of(context).size.height;
+      if (w) {
+        size = sw;
+      } else if (h) {
+        size = sh;
+      } else {
+        size = min(sw, sh);
+      }
     } catch (error) {
       String erro = "";
       if (size == null) {
@@ -99,10 +92,6 @@ class SimpleCode {
       throw (erro);
     }
     return size;
-  }
-
-  color(var color) {
-    return _allColors(color);
   }
 
   navigator(
@@ -123,7 +112,7 @@ class SimpleCode {
     );
   }
 
-  RoutedPage route(
+  _RoutedPage route(
       {Duration duration,
       NavFrom navFrom = NavFrom.rigth,
       NavFrom secondNavFrom,

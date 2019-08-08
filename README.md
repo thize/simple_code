@@ -4,31 +4,29 @@ Make Responsive and Development Faster and Easier
 
 # Functions
 Responsive and izi :)
+
 ```dart
-Container(
-height: sC.size(250),
-width: sC.size(250),
+new Container(
+	height: hsz(250),
+	width: wsz(250),
 )
+new Text("My Text",style:new TextStyle(fontSize: sz(15))); 
 ```
 
 Expanded Icon and Text
 ```dart
-sC.expandedText(new Text("My Text")); 
-sC.expandedIcon(new Icon(Icons.wifi));
+expandedText(new Text("My Text")); 
+expandedIcon(new Icon(Icons.wifi));
 ```
-
-All Color types
-```dart
-sC.color(0xffffffff); 
-sC.color("ffffff"); 
-sC.color("#ffffff"); 
-sC.color("rgb(255, 255, 255)"); 
-sC.color("rgb(255, 255, 255,1.0)"); 
-``` 
 
 Animated navigator with very simples
 ```dart
 navigator(duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut); 
+``` 
+
+Get context from SimpleCode
+```dart
+Ex: Navigator.pop(globalContext);
 ``` 
 
 # To use:
@@ -43,11 +41,17 @@ import 'package:simple_code/simple_code.dart';
 ```
 # Getting Started
 
-Just create a new SimpleCode inside Widget build()
+Just set SimpleCode context inside Widget build() on every screen
 
 ```dart
-SimpleCode sC = new SimpleCode(context: context);
+setSc(context);
 ``` 
+
+You can change the standard screen size: 
+```dart
+setSc(context,heigthEmulator: 640,widthEmulator: 360);
+``` 
+
 heigthEmulator is a size of prototipe heigth and
 widthEmulator is a size of prototipe width
 ```dart
@@ -55,30 +59,21 @@ widthEmulator is a size of prototipe width
 Change this to the screen size used in the prototype.
 ``` 
 
-You can change the standard screen size: 
-```dart
-SimpleCode sC = new SimpleCode(context: context,heigthEmulator: 640,widthEmulator: 360);
-``` 
-
-## Color
-```dart
-sC.color(0xffffffff); 
-``` 
-Types Accepted: 0xffffffff, "ffffff", "#ffffff", "rgb(255, 255, 255)", "rgb(255, 255, 255,1.0)"
 
 ## Text
 ```dart
-sC.expandedText(new Text("My Text")); 
+expandedText(new Text("My Text")); 
+
 ``` 
 ```dart
-new Text("My Text",style:new TextStyle(fontSize:sC.size(15))); 
+new Text("My Text",style:new TextStyle(fontSize: sz(15))); 
 ``` 
 
 You can change max and min font Size
 
 ## Navigator
 ```dart
-sC.navigator(duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut);
+navigator(duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut);
 ``` 
 You can choose one or two NavFrom, to match animations
 ```dart
@@ -104,15 +99,15 @@ Types:
 ``` 
 ## Icons
 ```dart
-new Expanded(child: sC.expandedIcon(new Icon(Icons.wifi))); 
+new Expanded(child: expandedIcon(new Icon(Icons.wifi))); 
 ``` 
 or
 ```dart
-sC.expandedIcon(new Icon(Icons.wifi));
+expandedIcon(new Icon(Icons.wifi));
 ``` 
 or
 ```dart
-new Icon(Icons.youtube_searched_for, size: sC.size(50));
+new Icon(Icons.youtube_searched_for, size: sz(50));
 ``` 
 to responsive icon without expanded
 
