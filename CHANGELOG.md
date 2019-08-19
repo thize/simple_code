@@ -1,6 +1,8 @@
+## 2.0.1
+setSc(context); just once
+
 ## 2.0.0
 * Colors removed
-* Added globalContext
 * sC.size(50) to sz(50)
 * SimpleCode sc = new SimpleCode(context); to setSc(context);
 * sz(50) to  hsz(50), wsz(50) or sz(50)

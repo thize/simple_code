@@ -15,13 +15,13 @@ class Home extends StatelessWidget {
 class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-	setSc(context);
+    setSc(context);
     return new Scaffold(
         body: Center(
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          mynavigator(),
+          mynavigator(context),
           responsiveContainerWithExpandedIcon(),
           responsiveIcon(),
           myexpandedIcon(),
@@ -32,7 +32,7 @@ class Page1 extends StatelessWidget {
     ));
   }
 
-  InkWell mynavigator() {
+  InkWell mynavigator(context) {
     return InkWell(
       child: Container(
         height: hsz(50.0),
@@ -44,6 +44,7 @@ class Page1 extends StatelessWidget {
       ),
       onTap: () {
         navigator(
+          context,
           duration: Duration(milliseconds: 800),
           page: new Page2(),
           navFrom: NavFrom.rigth,
@@ -72,11 +73,9 @@ class Page1 extends StatelessWidget {
     );
   }
 
-  myexpandedIcon() =>
-      new Expanded(child: expandedIcon(new Icon(Icons.wifi)));
+  myexpandedIcon() => new Expanded(child: expandedIcon(new Icon(Icons.wifi)));
 
-  Icon responsiveIcon() =>
-      new Icon(Icons.youtube_searched_for, size: sz(50.0));
+  Icon responsiveIcon() => new Icon(Icons.youtube_searched_for, size: sz(50.0));
 
   Container responsiveContainerWithExpandedIcon() {
     return new Container(
@@ -91,14 +90,13 @@ class Page1 extends StatelessWidget {
 class Page2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    setSc(context);
     return Scaffold(
       backgroundColor: Colors.red,
       body: new Center(
         child: new FlatButton(
           child: new Text("pop"),
           onPressed: () {
-            navigator(navType: NavType.pop);
+            navigator(context, navType: NavType.pop);
           },
         ),
       ),

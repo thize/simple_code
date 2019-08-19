@@ -10,7 +10,7 @@ part 'navigator.dart';
 
 _SimpleCode _sc;
 
-void navigator(
+void navigator(context,
     {Duration duration,
     NavFrom navFrom = NavFrom.rigth,
     NavFrom secondNavFrom,
@@ -18,6 +18,7 @@ void navigator(
     Widget page,
     Curve curves = Curves.linear}) {
   _sc.navigator(
+      context: context,
       duration: duration,
       navFrom: navFrom,
       secondNavFrom: secondNavFrom,
@@ -25,8 +26,6 @@ void navigator(
       page: page,
       curves: curves);
 }
-
-BuildContext get globalContext => _sc.context;
 
 double sz(double size) {
   return _sc._size(size);
@@ -70,7 +69,9 @@ Widget expandedIcon(Icon icon,
 void setSc(BuildContext context,
     {double heigthEmulator = 640.0, double widthEmulator = 360.0}) {
   _sc = new _SimpleCode(
-      context: context,
-      heigthEmulator: heigthEmulator,
-      widthEmulator: widthEmulator);
+    heigthEmulator: heigthEmulator,
+    widthEmulator: widthEmulator,
+    heigth: MediaQuery.of(context).size.height,
+    width: MediaQuery.of(context).size.width,
+  );
 }

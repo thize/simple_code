@@ -1,11 +1,13 @@
 part of simple_code;
 
 class _SimpleCode {
-  final BuildContext context;
   final double heigthEmulator;
   final double widthEmulator;
+  final double heigth;
+  final double width;
   _SimpleCode(
-      {@required this.context,
+      {@required this.heigth,
+      @required this.width,
       this.heigthEmulator = 640.0,
       this.widthEmulator = 360.0});
   _expandedIcon(Icon icon,
@@ -69,8 +71,8 @@ class _SimpleCode {
 
   _size(double size, {bool w = false, bool h = false}) {
     try {
-      double sw = (size / widthEmulator) * MediaQuery.of(context).size.width;
-      double sh = (size / heigthEmulator) * MediaQuery.of(context).size.height;
+      double sw = (size / widthEmulator) * width;
+      double sh = (size / heigthEmulator) * heigth;
       if (w) {
         size = sw;
       } else if (h) {
@@ -83,9 +85,6 @@ class _SimpleCode {
       if (size == null) {
         erro = "${erro}size == null";
       }
-      if (context == null) {
-        erro = "$erro\ncontext == null";
-      }
       if (erro.length == 0) {
         erro = error;
       }
@@ -96,6 +95,7 @@ class _SimpleCode {
 
   navigator(
       {Duration duration,
+      @required BuildContext context,
       NavFrom navFrom = NavFrom.rigth,
       NavFrom secondNavFrom,
       NavType navType = NavType.push,
@@ -114,6 +114,7 @@ class _SimpleCode {
 
   _RoutedPage route(
       {Duration duration,
+      @required BuildContext context,
       NavFrom navFrom = NavFrom.rigth,
       NavFrom secondNavFrom,
       NavType navType = NavType.push,

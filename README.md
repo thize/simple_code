@@ -21,12 +21,7 @@ expandedIcon(new Icon(Icons.wifi));
 
 Animated navigator with very simples
 ```dart
-navigator(duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut); 
-``` 
-
-Get context from SimpleCode
-```dart
-Ex: Navigator.pop(globalContext);
+navigator(context, duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut); 
 ``` 
 
 # To use:
@@ -73,7 +68,7 @@ You can change max and min font Size
 
 ## Navigator
 ```dart
-navigator(duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut);
+navigator(context, duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut);
 ``` 
 You can choose one or two NavFrom, to match animations
 ```dart
