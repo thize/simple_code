@@ -1,6 +1,6 @@
 name: simple_code
 description: Make Responsive and Development Faster and Easier
-version: 2.0.1
+version: 3.0.1
 author: Thize <thizeml@gmail.com>
 homepage: https://github.com/thize/simple_code
 
@@ -16,6 +16,3 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-  plugin:
-    androidPackage: com.bluebook.simple_code
-    pluginClass: SimpleCodePlugin

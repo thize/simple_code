@@ -8,6 +8,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: SimpleCode.navigatorKey,
       home: new Page1(),
     );
   }
@@ -16,13 +17,12 @@ class Home extends StatelessWidget {
 class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-	setSc(context);
     return new Scaffold(
         body: Center(
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          mynavigator(),
+          mynavigator(context),
           responsiveContainerWithExpandedIcon(),
           responsiveIcon(),
           myexpandedIcon(),
@@ -33,31 +33,38 @@ class Page1 extends StatelessWidget {
     ));
   }
 
-  InkWell mynavigator() {
+  InkWell mynavigator(context) {
     return InkWell(
       child: Container(
         height: hsz(50.0),
         width: wsz(50.0),
         alignment: Alignment.center,
         color: Colors.red,
-        child: expandedText(new Text(
-            "Util Navigator\nNavType.push\nNavFrom.rigth\nSecondNavFrom.fade")),
+        child: ExpandedText(
+            "Util Navigator\nNavType.push\nNavFrom.rigth\nSecondNavFrom.fade"),
       ),
       onTap: () {
-        navigator(
-          duration: Duration(milliseconds: 800),
-          page: new Page2(),
-          navFrom: NavFrom.rigth,
-          secondNavFrom: NavFrom.fade,
-          navType: NavType.push,
-          curves: Curves.elasticOut,
-        );
+        pushWithoutContext();
       },
     );
   }
 
-  Expanded myexpandedText() =>
-      Expanded(child: expandedText(new Text("Expanded Text")));
+  pushWithoutContext() {
+    SimpleNavigator.push(customPageRoute(
+      Page2(),
+      curve: Curves.easeOutBack,
+      duration: Duration(milliseconds: 600),
+      transitions: [
+        Transition.slide_from_top,
+        Transition.slide_from_rigth,
+        Transition.fade_in,
+      ],
+    ));
+    //SimpleNavigator.push(cupertinoPageRoute(Page2()));
+    //SimpleNavigator.push(materialPageRoute(Page2()));
+  }
+
+  Expanded myexpandedText() => Expanded(child: ExpandedText("Expanded Text"));
 
   Container responsiveContainerWithExpandedText() {
     return Container(
@@ -65,26 +72,24 @@ class Page1 extends StatelessWidget {
       width: wsz(50.0),
       color: Colors.red,
       alignment: Alignment.center,
-      child: expandedText(new Text(
+      child: ExpandedText(
         "Text Container",
         maxLines: 2,
         textAlign: TextAlign.center,
-      )),
+      ),
     );
   }
 
-  myexpandedIcon() =>
-      new Expanded(child: expandedIcon(new Icon(Icons.wifi)));
+  myexpandedIcon() => new Expanded(child: ExpandedIcon(Icons.wifi));
 
-  Icon responsiveIcon() =>
-      new Icon(Icons.youtube_searched_for, size: sz(50.0));
+  Icon responsiveIcon() => new Icon(Icons.youtube_searched_for, size: sz(50.0));
 
   Container responsiveContainerWithExpandedIcon() {
     return new Container(
       color: Colors.yellow,
       height: hsz(50.0),
       width: wsz(50.0),
-      child: expandedIcon(new Icon(Icons.hd, color: Colors.red)),
+      child: ExpandedIcon(Icons.hd, color: Colors.red),
     );
   }
 }
@@ -92,18 +97,22 @@ class Page1 extends StatelessWidget {
 class Page2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    setSc(context);
     return Scaffold(
       backgroundColor: Colors.red,
       body: new Center(
         child: new FlatButton(
           child: new Text("pop"),
           onPressed: () {
-            navigator(navType: NavType.pop);
+            popWithOutContext();
           },
         ),
       ),
     );
   }
+
+  popWithOutContext() {
+    SimpleNavigator.pop();
+  }
 }
+
 ``` 

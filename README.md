@@ -1,9 +1,13 @@
 # Simple Code
 
-Make Responsive and Development Faster and Easier
+Make Development Faster, Easier and Responsive
 
 # Functions
-Responsive and izi :)
+## Navigator without context
+## ExpandedText
+## ExpandedIcon
+## Responsive size: hsz(), wsz(), sz()
+
 
 ```dart
 new Container(
@@ -15,13 +19,22 @@ new Text("My Text",style:new TextStyle(fontSize: sz(15)));
 
 Expanded Icon and Text
 ```dart
-expandedText(new Text("My Text")); 
-expandedIcon(new Icon(Icons.wifi));
+ExpandedText("My Text"); 
+ExpandedIcon(Icons.wifi);
 ```
 
 Animated navigator with very simples
 ```dart
-navigator(context, duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut); 
+SimpleNavigator.push(customPageRoute(
+    Page(),
+    curve: Curves.easeOutBack,
+    duration: Duration(milliseconds: 600),
+    transitions: [
+        Transition.slide_from_top,
+        Transition.slide_from_rigth,
+        Transition.fade_in,
+    ],
+));
 ``` 
 
 # To use:
@@ -36,19 +49,20 @@ import 'package:simple_code/simple_code.dart';
 ```
 # Getting Started
 
-Just set SimpleCode context inside Widget build() on every screen
-
 ```dart
-setSc(context);
+return MaterialApp(
+    navigatorKey: SimpleCode.navigatorKey,
+    home: new MyApp(),
+);
 ``` 
 
 You can change the standard screen size: 
 ```dart
-setSc(context,heigthEmulator: 640,widthEmulator: 360);
+SimpleCode.changeEmulatorSize(heigth: 640, width: 360);
 ``` 
 
-heigthEmulator is a size of prototipe heigth and
-widthEmulator is a size of prototipe width
+heigth is a size of prototipe heigth and
+width is a size of prototipe width
 ```dart
 640 (height) and 360 (width) are the default Android screen size in Adobe XD.
 Change this to the screen size used in the prototype.
@@ -57,29 +71,38 @@ Change this to the screen size used in the prototype.
 
 ## Text
 ```dart
-expandedText(new Text("My Text")); 
+ExpandedText("My Text"); 
 
 ``` 
 ```dart
-new Text("My Text",style:new TextStyle(fontSize: sz(15))); 
+new Text("My Text",style: new TextStyle(fontSize: sz(15))); 
 ``` 
 
 You can change max and min font Size
 
-## Navigator
+## Navigator without context
 ```dart
-navigator(context, duration: Duration(milliseconds: 800),page: new Page(),navFrom: NavFrom.rigth,curves: Curves.elasticOut);
-``` 
-You can choose one or two NavFrom, to match animations
-```dart
-navFrom: NavFrom.rigth, secondNavFrom: NavFrom.fade 
-is other than
-navFrom: NavFrom.fade, secondNavFrom: NavFrom.rigth
+SimpleNavigator.push(cupertinoPageRoute(Page()));
+```
+
+You can choose a list of Transitions, to match animations
+
+``` dart
+SimpleNavigator.push(customPageRoute(
+    Page(),
+    curve: Curves.easeOutBack,
+    duration: Duration(milliseconds: 600),
+    transitions: [
+        Transition.slide_from_top,
+        Transition.slide_from_rigth,
+        Transition.fade_in,
+    ],
+));
 ``` 
 
-Animations:
+Transitions:
 ```dart
-fade, left, rigth, bottom, top, scale, rotation,
+fade_in, slide_from_bottom, slide_from_rigth, slide_from_left, slide_from_top, zoom_in,
 ``` 
 Curves:
 ```dart
@@ -90,15 +113,15 @@ Curves:
 Types:
     
 ```dart
- pop, push, pushReplacement
+ pop, push, pushReplacement, etc... 
 ``` 
 ## Icons
 ```dart
-new Expanded(child: expandedIcon(new Icon(Icons.wifi))); 
+new Expanded(child: ExpandedIcon(Icons.wifi)); 
 ``` 
 or
 ```dart
-expandedIcon(new Icon(Icons.wifi));
+ExpandedIcon(Icons.wifi);
 ``` 
 or
 ```dart
