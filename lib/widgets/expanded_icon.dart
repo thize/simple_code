@@ -1,12 +1,10 @@
-part of simple_code;
+import 'dart:math';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import '../simple_code.dart';
 
 class ExpandedIcon extends StatelessWidget {
-  final IconData icon;
-  final double maxSize;
-  final double minSize;
-  final Color color;
-  final String semanticLabel;
-  final TextDirection textDirection;
   const ExpandedIcon(
     this.icon, {
     Key key,
@@ -16,10 +14,16 @@ class ExpandedIcon extends StatelessWidget {
     this.maxSize = double.maxFinite,
     this.minSize = 2.0,
   }) : super(key: key);
+  final IconData icon;
+  final double maxSize;
+  final double minSize;
+  final Color color;
+  final String semanticLabel;
+  final TextDirection textDirection;
 
   @override
   Widget build(BuildContext context) {
-    return new LayoutBuilder(
+    return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         double size = min(constraints.maxHeight, constraints.maxWidth);
         if (size < minSize) {
@@ -27,13 +31,13 @@ class ExpandedIcon extends StatelessWidget {
         } else if (size > maxSize) {
           size = maxSize;
         }
-        return new Icon(
+        return Icon(
           icon,
           color: color,
           key: key,
           semanticLabel: semanticLabel,
           textDirection: textDirection,
-          size: SimpleCode._size(size),
+          size: sz(size),
         );
       },
     );

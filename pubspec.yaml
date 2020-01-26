@@ -5,14 +5,16 @@ author: Thize <thizeml@gmail.com>
 homepage: https://github.com/thize/simple_code
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
+  pedantic: ^1.9.0
+  shared_preferences: ^0.5.6+1
+  flutter_inapp_purchase: ^2.1.0
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  lint: ^1.1.1
 
 flutter:

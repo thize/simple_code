@@ -1,4 +1,4 @@
-part of simple_code;
+part of navigator;
 
 enum Transition {
   fade_in,
@@ -8,6 +8,14 @@ enum Transition {
   slide_from_top,
   zoom_in,
 }
+
+PageRoute cupertinoPageRoute(Widget page) => _Route.cupertinoPageRoute(page);
+PageRoute materialPageRoute(Widget page) => _Route.materialPageRoute(page);
+PageRoute customPageRoute(Widget page,
+        {List<Transition> transitions = const [Transition.slide_from_rigth],
+        Curve curve = Curves.linear,
+        Duration duration = const Duration(milliseconds: 300)}) =>
+    _Route.customPageRoute(page, transitions, curve, duration);
 
 class _Route {
   static PageRoute cupertinoPageRoute(Widget page) {
@@ -31,14 +39,6 @@ class _Route {
 }
 
 class _RoutedPage extends PageRouteBuilder {
-  final Widget page;
-  static Widget _page;
-  final Duration duration;
-  final Curve curve;
-  static List<Transition> _transitions = [];
-  static Animation<double> _animation;
-  static Curve _curve;
-  final List<Transition> transitions;
   _RoutedPage(this.page, this.duration, this.curve, this.transitions)
       : super(
             pageBuilder: (
@@ -61,8 +61,16 @@ class _RoutedPage extends PageRouteBuilder {
               _page = page;
               return _transition(0);
             });
+  final Widget page;
+  static Widget _page;
+  final Duration duration;
+  final Curve curve;
+  static List<Transition> _transitions = [];
+  static Animation<double> _animation;
+  static Curve _curve;
+  final List<Transition> transitions;
 
-  static _transition(int pos) {
+  static Widget _transition(int pos) {
     switch (_transitions[pos]) {
       case Transition.zoom_in:
         return _zoomIn(pos + 1);
@@ -85,12 +93,12 @@ class _RoutedPage extends PageRouteBuilder {
         );
         break;
       default:
-        throw ("Invalid navFrom");
+        throw ('Invalid navFrom');
     }
   }
 
   static Widget _slideFromSide(int pos, double dx, double dy) {
-    return new SlideTransition(
+    return SlideTransition(
       position: Tween<Offset>(
         begin: Offset(dx, dy),
         end: Offset.zero,
@@ -105,7 +113,7 @@ class _RoutedPage extends PageRouteBuilder {
   }
 
   static Widget _zoomIn(int pos) {
-    return new ScaleTransition(
+    return ScaleTransition(
       scale: Tween<double>(
         begin: 0.0,
         end: 1.0,

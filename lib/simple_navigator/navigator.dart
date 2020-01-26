@@ -1,4 +1,4 @@
-part of simple_code;
+part of navigator;
 
 class SimpleNavigator {
   static bool pop() {
@@ -22,7 +22,7 @@ class SimpleNavigator {
   }
 
   static Future<void> pushNamed(String routeName) async {
-    SimpleCode.navigatorKey.currentState.pushNamed(routeName);
+    await SimpleCode.navigatorKey.currentState.pushNamed(routeName);
   }
 
   static Future<void> pushReplacement(PageRoute route) async {
@@ -35,12 +35,13 @@ class SimpleNavigator {
 
   static Future<void> pushAndRemoveUntil(
       PageRoute route, bool Function(Route<dynamic>) predicate) async {
-    SimpleCode.navigatorKey.currentState..pushAndRemoveUntil(route, predicate);
+    await SimpleCode.navigatorKey.currentState
+        .pushAndRemoveUntil(route, predicate);
   }
 
   static Future<void> pushNamedAndRemoveUntil(
       String routeName, bool Function(Route<dynamic>) predicate) async {
-    SimpleCode.navigatorKey.currentState
+    await SimpleCode.navigatorKey.currentState
         .pushNamedAndRemoveUntil(routeName, predicate);
   }
 }
