@@ -1,7 +1,6 @@
 name: simple_code
-description: Make Responsive and Development Faster and Easier
-version: 3.0.1
-author: Thize <thizeml@gmail.com>
+description: Make Responsive, Development and InAppPurchases Faster and Easier
+version: 3.1.0
 homepage: https://github.com/thize/simple_code
 
 environment:
