@@ -42,7 +42,7 @@ linter:
     recursive_getters: true
     slash_for_doc_comments: true
     type_init_formals: true
-    unawaited_futures: true
+    unawaited_futures: false
     unnecessary_const: true
     unnecessary_new: true
     unnecessary_null_in_if_null_operators: true

@@ -15,24 +15,28 @@ class SimpleBilling {
   static StreamSubscription _purchaseErrorSubscription;
   static StreamSubscription _conectionSubscription;
   static Widget _popUpWidget;
-  static List<IAPItem> _products;
+  static List<IAPItem> products;
   static Set<String> purchasesId;
   static BuildContext _context;
   static void Function(PurchasedItem, bool) _onPurchaseUpdated;
   static bool _openedPopUp = false;
   static bool _offline;
+  static List<String> _productsId;
+  static bool withDebug = false;
 
-  static void initBilling({
-    @required List<String> products,
+  static Future<void> initBilling({
+    List<String> productsId,
     bool offline = true,
     Widget popUpWidget,
     void Function(PurchasedItem, bool isNewPurchase) onPurchaseUpdated,
   }) async {
+    _productsId = productsId ?? _productsId;
+    if (_productsId == null) throw 'initBilling with productsId';
     _offline = offline;
-    _onPurchaseUpdated = onPurchaseUpdated;
-    _popUpWidget = popUpWidget;
+    _onPurchaseUpdated = onPurchaseUpdated ?? _onPurchaseUpdated;
+    _popUpWidget = popUpWidget ?? _popUpWidget;
     await FlutterInappPurchase.instance.initConnection;
-    _products = await FlutterInappPurchase.instance.getProducts(products);
+    products = await FlutterInappPurchase.instance.getProducts(productsId);
     try {
       await FlutterInappPurchase.instance.consumeAllItems;
     } catch (e) {
@@ -57,7 +61,9 @@ class SimpleBilling {
     await restorePurchases();
   }
 
-  static List<IAPItem> get products => _products;
+  static void activeDebug() {
+    withDebug = true;
+  }
 
   static Future<void> buyProduct(String productId,
       {BuildContext context}) async {
@@ -87,7 +93,7 @@ class SimpleBilling {
 
   static String getPriceById(String productId) {
     IAPItem item =
-        _products.firstWhere((product) => product.productId == productId);
+        products.firstWhere((product) => product.productId == productId);
     return item?.price;
   }
 
@@ -141,15 +147,15 @@ class SimpleBilling {
   static Future<void> dispose() async {
     await FlutterInappPurchase.instance.endConnection;
     if (_conectionSubscription != null) {
-      unawaited(_conectionSubscription.cancel());
+      _conectionSubscription.cancel();
       _conectionSubscription = null;
     }
     if (_purchaseUpdatedSubscription != null) {
-      unawaited(_purchaseUpdatedSubscription.cancel());
+      _purchaseUpdatedSubscription.cancel();
       _purchaseUpdatedSubscription = null;
     }
     if (_purchaseErrorSubscription != null) {
-      unawaited(_purchaseErrorSubscription.cancel());
+      _purchaseErrorSubscription.cancel();
       _purchaseErrorSubscription = null;
     }
   }

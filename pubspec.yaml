@@ -1,13 +1,12 @@
 name: simple_code
 description: Make Responsive, Development and InAppPurchases Faster and Easier
-version: 3.1.0
+version: 3.1.1
 homepage: https://github.com/thize/simple_code
 
 environment:
   sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
-  pedantic: ^1.9.0
   shared_preferences: ^0.5.6+1
   flutter_inapp_purchase: ^2.1.0
   flutter:
@@ -15,5 +14,9 @@ dependencies:
 
 dev_dependencies:
   lint: ^1.1.1
+  flutter_test:
+      sdk: flutter
+  
 
 flutter:
+  
