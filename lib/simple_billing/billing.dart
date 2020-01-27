@@ -18,7 +18,7 @@ class SimpleBilling {
   static List<IAPItem> products;
   static Set<String> purchasesId;
   static BuildContext _context;
-  static void Function(PurchasedItem, bool) _onPurchaseUpdated;
+  static void Function(String roductId, bool isNewPurchase) _onPurchaseUpdated;
   static bool _openedPopUp = false;
   static bool _offline;
   static List<String> _productsId;
@@ -28,11 +28,11 @@ class SimpleBilling {
     List<String> productsId,
     bool offline = true,
     Widget popUpWidget,
-    void Function(PurchasedItem, bool isNewPurchase) onPurchaseUpdated,
+    void Function(String productId, bool isNewPurchase) onPurchaseUpdated,
   }) async {
     _productsId = productsId ?? _productsId;
     if (_productsId == null) throw 'initBilling with productsId';
-    _offline = offline;
+    _offline = offline ?? _offline;
     _onPurchaseUpdated = onPurchaseUpdated ?? _onPurchaseUpdated;
     _popUpWidget = popUpWidget ?? _popUpWidget;
     await FlutterInappPurchase.instance.initConnection;
@@ -50,7 +50,7 @@ class SimpleBilling {
     _purchaseUpdatedSubscription =
         FlutterInappPurchase.purchaseUpdated.listen((productItem) {
       _closePopUp();
-      _onPurchaseUpdated(productItem, true);
+      _onPurchaseUpdated(productItem.productId, true);
       restorePurchases();
     });
 
@@ -76,19 +76,26 @@ class SimpleBilling {
   }
 
   static Future<void> restorePurchases() async {
-    List<PurchasedItem> purchaseHistory =
-        await FlutterInappPurchase.instance.getPurchaseHistory();
-    purchasesId = (purchaseHistory).map((product) => product.productId).toSet();
-    purchaseHistory
-        .forEach((productItem) => _onPurchaseUpdated(productItem, false));
+    List<PurchasedItem> purchaseHistory;
+    try {
+      purchaseHistory =
+          await FlutterInappPurchase.instance.getPurchaseHistory();
+    } catch (e) {
+      print('Offline');
+    }
+    purchasesId =
+        (purchaseHistory)?.map((product) => product.productId)?.toSet();
     if (_offline) {
-      if (purchasesId?.isEmpty ?? false) {
+      if (purchasesId != null && purchasesId.isNotEmpty) {
         await _BillingSharedPrefs.updatePurchases(purchasesId);
       } else {
         purchasesId = {};
       }
       purchasesId.addAll(await _BillingSharedPrefs.getPurchases());
     }
+    purchasesId.forEach((String purchase) {
+      _onPurchaseUpdated(purchase, false);
+    });
   }
 
   static String getPriceById(String productId) {
