@@ -1,47 +1,49 @@
 part of navigator;
 
 class SimpleNavigator {
+  static GlobalKey<NavigatorState> key = GlobalKey<NavigatorState>();
+  static void changeNavigatorKey(GlobalKey<NavigatorState> newKey) =>
+      key = newKey;
+
   static bool pop() {
-    return SimpleCode.navigatorKey.currentState.pop();
+    return key.currentState.pop();
   }
 
   static Future<void> popAndPushNamed(String routeName) async {
-    await SimpleCode.navigatorKey.currentState.popAndPushNamed(routeName);
+    await key.currentState.popAndPushNamed(routeName);
   }
 
   static bool canPop() {
-    return SimpleCode.navigatorKey.currentState.canPop();
+    return key.currentState.canPop();
   }
 
   static Future<bool> maybePop() async {
-    return await SimpleCode.navigatorKey.currentState.maybePop();
+    return await key.currentState.maybePop();
   }
 
   static Future<void> push(PageRoute route) async {
-    await SimpleCode.navigatorKey.currentState.push(route);
+    await key.currentState.push(route);
   }
 
   static Future<void> pushNamed(String routeName) async {
-    await SimpleCode.navigatorKey.currentState.pushNamed(routeName);
+    await key.currentState.pushNamed(routeName);
   }
 
   static Future<void> pushReplacement(PageRoute route) async {
-    await SimpleCode.navigatorKey.currentState.pushReplacement(route);
+    await key.currentState.pushReplacement(route);
   }
 
   static Future<void> pushReplacementNamed(String routeName) async {
-    await SimpleCode.navigatorKey.currentState.pushReplacementNamed(routeName);
+    await key.currentState.pushReplacementNamed(routeName);
   }
 
   static Future<void> pushAndRemoveUntil(
       PageRoute route, bool Function(Route<dynamic>) predicate) async {
-    await SimpleCode.navigatorKey.currentState
-        .pushAndRemoveUntil(route, predicate);
+    await key.currentState.pushAndRemoveUntil(route, predicate);
   }
 
   static Future<void> pushNamedAndRemoveUntil(
       String routeName, bool Function(Route<dynamic>) predicate) async {
-    await SimpleCode.navigatorKey.currentState
-        .pushNamedAndRemoveUntil(routeName, predicate);
+    await key.currentState.pushNamedAndRemoveUntil(routeName, predicate);
   }
 }

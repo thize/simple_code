@@ -24,7 +24,7 @@ class SimpleBilling {
   static List<String> _productsId;
   static bool withDebug = false;
 
-  static Future<void> initBilling({
+  static Future<void> init({
     List<String> productsId,
     bool offline = true,
     Widget popUpWidget,
@@ -36,7 +36,11 @@ class SimpleBilling {
     _onPurchaseUpdated = onPurchaseUpdated ?? _onPurchaseUpdated;
     _popUpWidget = popUpWidget ?? _popUpWidget;
     await FlutterInappPurchase.instance.initConnection;
-    products = await FlutterInappPurchase.instance.getProducts(productsId);
+    try {
+      products = await FlutterInappPurchase.instance.getProducts(productsId);
+    } catch (e) {
+      products = [];
+    }
     try {
       await FlutterInappPurchase.instance.consumeAllItems;
     } catch (e) {
@@ -87,7 +91,7 @@ class SimpleBilling {
         (purchaseHistory)?.map((product) => product.productId)?.toSet();
     if (_offline) {
       if (purchasesId != null && purchasesId.isNotEmpty) {
-        await _BillingSharedPrefs.updatePurchases(purchasesId);
+        await _BillingSharedPrefs.setPurchases(purchasesId);
       } else {
         purchasesId = {};
       }

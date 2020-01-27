@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import '../simple_navigator/simple_navigator.dart';
 
 double sz(double size) {
   return SimpleCode._size(size);
@@ -15,21 +16,17 @@ double hsz(double size) {
 }
 
 class SimpleCode {
-  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   static double _emulatorHeigth = 640;
   static double _emulatorWidth = 360;
   static double get _width =>
-      MediaQuery.of(navigatorKey.currentContext).size.width;
+      MediaQuery.of(SimpleNavigator.key.currentContext).size.width;
   static double get _heigth =>
-      MediaQuery.of(navigatorKey.currentContext).size.height;
+      MediaQuery.of(SimpleNavigator.key.currentContext).size.height;
   static void changeEmulatorSize(
       {@required double heigth, @required double width}) {
     _emulatorHeigth = heigth;
     _emulatorWidth = width;
   }
-
-  static void changeNavigatorKey(GlobalKey<NavigatorState> newKey) =>
-      navigatorKey = newKey;
 
   static double _size(double size, {bool w = false, bool h = false}) {
     try {
@@ -43,7 +40,7 @@ class SimpleCode {
       }
     } catch (error) {
       String erro = '';
-      if (navigatorKey.currentContext == null) {
+      if (SimpleNavigator.key.currentContext == null) {
         erro = 'set navigatorKey: SimpleCode.navigatorKey on MaterialApp';
       }
       throw (erro);
