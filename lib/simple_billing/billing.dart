@@ -103,9 +103,13 @@ class SimpleBilling {
   }
 
   static String getPriceById(String productId) {
+    return getProductById(productId)?.localizedPrice;
+  }
+
+  static IAPItem getProductById(String productId) {
     IAPItem item =
-        products.firstWhere((product) => product.productId == productId);
-    return item?.price;
+        products?.firstWhere((product) => product.productId == productId);
+    return item;
   }
 
   static bool checkPurchase(String productId) {
