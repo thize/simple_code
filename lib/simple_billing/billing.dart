@@ -113,13 +113,13 @@ class SimpleBilling {
   }
 
   static bool checkPurchase(String productId) {
-    return purchasesId.contains(productId);
+    return purchasesId?.contains(productId) ?? false;
   }
 
   static Set<String> checkPurchases(List<String> productId) {
     Set<String> purchases = {};
     for (var purchaseId in purchasesId ?? {}) {
-      if (productId.contains(purchaseId)) {
+      if (productId?.contains(purchaseId) ?? false) {
         purchases.add(purchaseId);
       }
     }
