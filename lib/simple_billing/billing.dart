@@ -16,13 +16,12 @@ class SimpleBilling {
   static StreamSubscription _conectionSubscription;
   static Widget _popUpWidget;
   static List<IAPItem> products;
-  static Set<String> purchasesId;
+  static Set<String> purchasesId = {};
   static BuildContext _context;
   static void Function(String roductId, bool isNewPurchase) _onPurchaseUpdated;
   static bool _openedPopUp = false;
   static bool _offline;
   static List<String> _productsId;
-  static bool withDebug = false;
 
   static Future<void> init({
     List<String> productsId,
@@ -65,10 +64,6 @@ class SimpleBilling {
     await restorePurchases();
   }
 
-  static void activeDebug() {
-    withDebug = true;
-  }
-
   static Future<void> buyProduct(String productId,
       {BuildContext context}) async {
     try {
@@ -87,9 +82,9 @@ class SimpleBilling {
     } catch (e) {
       print('Offline');
     }
-    purchasesId =
-        (purchaseHistory)?.map((product) => product.productId)?.toSet();
-    if (_offline) {
+    purchasesId.addAll(
+        (purchaseHistory)?.map((product) => product.productId)?.toSet() ?? {});
+    if (_offline ?? true) {
       if (purchasesId != null && purchasesId.isNotEmpty) {
         await _BillingSharedPrefs.setPurchases(purchasesId);
       } else {
@@ -107,9 +102,13 @@ class SimpleBilling {
   }
 
   static IAPItem getProductById(String productId) {
-    IAPItem item =
-        products?.firstWhere((product) => product.productId == productId);
-    return item;
+    try {
+      IAPItem item =
+          products?.firstWhere((product) => product?.productId == productId);
+      return item;
+    } catch (e) {
+      return null;
+    }
   }
 
   static bool checkPurchase(String productId) {
@@ -157,6 +156,14 @@ class SimpleBilling {
       Navigator.pop(_context);
       _context = null;
     }
+  }
+
+  static void setFakePurchases(Set<String> purchases) async {
+    purchasesId.addAll(purchases);
+    await _BillingSharedPrefs.setPurchases(purchasesId);
+    purchasesId.forEach((element) {
+      _onPurchaseUpdated(element, false);
+    });
   }
 
   static Future<void> dispose() async {

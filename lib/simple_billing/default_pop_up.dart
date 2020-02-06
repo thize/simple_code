@@ -10,7 +10,13 @@ class _DefaultBillingPopUp extends StatelessWidget {
         child: Container(
           color: Colors.transparent,
           alignment: Alignment.center,
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation(
+              Platform.isIOS
+                  ? const Color(0xff017bff)
+                  : const Color(0xff00a273),
+            ),
+          ),
         ),
       ),
     );

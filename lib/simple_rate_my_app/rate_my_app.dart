@@ -68,8 +68,11 @@ class SimpleRateMyApp {
   }
 
   static Future<void> dontShowMore() async {
+    _dontShowMore = true;
     await _RateMyAppSharedPrefs.setDontShowMore(true);
   }
+
+  static bool get dontShowMoreValue => _dontShowMore;
 
   static Future<void> reset() async {
     daysElapsed = 1;
