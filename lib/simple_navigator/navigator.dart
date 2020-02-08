@@ -5,7 +5,7 @@ class SimpleNavigator {
   static void changeNavigatorKey(GlobalKey<NavigatorState> newKey) =>
       key = newKey;
 
-  static bool pop() {
+  static void pop() {
     return key.currentState.pop();
   }
 
