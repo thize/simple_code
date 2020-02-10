@@ -17,6 +17,12 @@ PageRoute customPageRoute(Widget page,
         Duration duration = const Duration(milliseconds: 300)}) =>
     _Route.customPageRoute(page, transitions, curve, duration);
 
+PageRoute customPageBuilder(Widget Function(BuildContext) builder,
+        {List<Transition> transitions = const [Transition.slide_from_rigth],
+        Curve curve = Curves.linear,
+        Duration duration = const Duration(milliseconds: 300)}) =>
+    _Route.customPageRoute(builder, transitions, curve, duration);
+
 class _Route {
   static PageRoute cupertinoPageRoute(Widget page) {
     return CupertinoPageRoute(builder: (BuildContext context) {
@@ -32,7 +38,7 @@ class _Route {
     );
   }
 
-  static PageRoute customPageRoute(Widget page, List<Transition> transitions,
+  static PageRoute customPageRoute(dynamic page, List<Transition> transitions,
       Curve curve, Duration duration) {
     return _RoutedPage(page, duration, curve, transitions);
   }
@@ -58,10 +64,10 @@ class _RoutedPage extends PageRouteBuilder {
               _transitions.add(null);
               _animation = animation;
               _curve = curve;
-              _page = page;
+              _page = page is Widget ? page : page(context);
               return _transition(0);
             });
-  final Widget page;
+  final dynamic page;
   static Widget _page;
   final Duration duration;
   final Curve curve;
