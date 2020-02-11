@@ -51,7 +51,7 @@ import 'package:simple_code/simple_code.dart';
 
 ```dart
 return MaterialApp(
-    navigatorKey: SimpleCode.navigatorKey,
+    navigatorKey: SimpleNavigator.key,
     home: new MyApp(),
 );
 ``` 
