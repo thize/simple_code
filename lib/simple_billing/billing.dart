@@ -70,13 +70,14 @@ class SimpleBilling {
   }
 
   static Future<void> buyProduct(String productId,
-      {bool consumable = false, BuildContext context}) async {
+      {BuildContext context, bool consumable = false}) async {
     try {
       _consumable = consumable;
       _openPopUp(context);
       await FlutterInappPurchase.instance.requestPurchase(productId);
     } catch (e) {
       print('$productId = $e');
+      _closePopUp();
     }
   }
 
