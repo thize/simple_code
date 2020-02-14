@@ -22,6 +22,7 @@ class SimpleBilling {
   static bool _openedPopUp = false;
   static bool _offline;
   static List<String> _productsId;
+  static bool _consumable = false;
 
   static Future<void> init({
     List<String> productsId,
@@ -54,6 +55,10 @@ class SimpleBilling {
         FlutterInappPurchase.purchaseUpdated.listen((productItem) {
       _closePopUp();
       _onPurchaseUpdated(productItem.productId, true);
+      if (_consumable) {
+        FlutterInappPurchase.instance
+            .consumePurchaseAndroid(productItem.purchaseToken);
+      }
       restorePurchases();
     });
 
@@ -65,8 +70,9 @@ class SimpleBilling {
   }
 
   static Future<void> buyProduct(String productId,
-      {BuildContext context}) async {
+      {bool consumable = false, BuildContext context}) async {
     try {
+      _consumable = consumable;
       _openPopUp(context);
       await FlutterInappPurchase.instance.requestPurchase(productId);
     } catch (e) {
