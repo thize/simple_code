@@ -4,9 +4,11 @@ linter:
     public_member_api_docs: false
     omit_local_variable_types: false
     always_specify_types: false
-    always_put_required_named_parameters_first: true
-    sort_constructors_first: true
+    always_put_required_named_parameters_first: false
     lines_longer_than_80_chars: false
+    empty_catches: false
+    unawaited_futures: false
+    sort_constructors_first: true
     always_declare_return_types: true
     always_require_non_null_named_parameters: true
     annotate_overrides: true
@@ -19,7 +21,6 @@ linter:
     avoid_types_as_parameter_names: true
     camel_case_extensions: true
     curly_braces_in_flow_control_structures: true
-    empty_catches: true
     empty_constructor_bodies: true
     library_names: true
     library_prefixes: true
@@ -30,19 +31,17 @@ linter:
     prefer_conditional_assignment: true
     prefer_contains: true
     prefer_equal_for_default_values: true
-    prefer_final_fields: true
+    prefer_final_fields: false
     prefer_for_elements_to_map_fromIterable: true
     prefer_generic_function_type_aliases: true
     prefer_if_null_operators: true
-    prefer_is_empty: true
-    prefer_is_not_empty: true
+    prefer_is_not_empty: false
     prefer_iterable_whereType: true
     prefer_single_quotes: true
     prefer_spread_collections: true
     recursive_getters: true
     slash_for_doc_comments: true
     type_init_formals: true
-    unawaited_futures: false
     unnecessary_const: true
     unnecessary_new: true
     unnecessary_null_in_if_null_operators: true
@@ -89,8 +88,6 @@ analyzer:
     prefer_for_elements_to_map_fromIterable: error
     prefer_generic_function_type_aliases: error
     prefer_if_null_operators: error
-    prefer_is_empty: error
-    prefer_is_not_empty: error
     prefer_iterable_whereType: error
     prefer_single_quotes: error
     prefer_spread_collections: error

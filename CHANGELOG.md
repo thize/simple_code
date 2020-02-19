@@ -1,3 +1,7 @@
+##  3.3.0
+* Feat SimpleProvider
+* Feat MultiStreamBuilder Widget
+
 ##  3.2.8+1/3.2.8+2
 * Update README
 
