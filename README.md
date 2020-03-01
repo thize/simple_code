@@ -1,92 +1,120 @@
-# Functions
-## Simplified Navigator
-## Simplified Billing (In App Purchases)
-## Simplified Rate My App
-## Simplified Responsivity
-## ExpandedText
-## ExpandedIcon
+# SimpleCode
 
-
+## Utils Widgets
+ExpandedText
 ```dart
-new Container(
-	height: hsz(250),
-	width: wsz(250),
-)
-new Text("My Text",style:new TextStyle(fontSize: sz(15))); 
+new ExpandedText(
+  'data',
+  minFontSize: 2,
+),
+```
+ExpandedIcon
+```dart
+new ExpandedIcon(
+  Icons.wifi,
+),
+```
+AnimatedButton
+![Animated Button Demo](demo/animated_button.gif)
+```dart
+new AnimatedButton(
+  onTap: () {},
+  scale: 1.3,
+  angle: 30,
+  offset: Offset(0, -50),
+  opacity: 0.5,
+  child: Container(
+    width: 150,
+    height: 150,
+    color: Colors.red,
+  ),
+),
 ```
 
-Expanded Icon and Text
+AnimatedTween
+![Animated Tween Demo](demo/animated_tween.gif)
 ```dart
-ExpandedText("My Text"); 
-ExpandedIcon(Icons.wifi);
+new AnimatedTween(
+  offset: Offset(450, 0),
+  scale: 4.5,
+  angle: 250,
+  delay: Duration(milliseconds: 1000),
+  child: Container(
+    width: 150,
+    height: 150,
+    color: Colors.red,
+  ),
+),
 ```
 
-Animated navigator with very simples
+## Simple Responsivity
+Responsivity izier
+wsz = size in relation to prototype Width
+hsz = size in relation to prototype Height
+sz = min between wsz and hsz
 ```dart
-SimpleNavigator.push(customPageRoute(
-    Page(),
-    curve: Curves.easeOutBack,
-    duration: Duration(milliseconds: 600),
-    transitions: [
-        Transition.slide_from_top,
-        Transition.slide_from_rigth,
-        Transition.fade_in,
-    ],
-));
-``` 
-
-# To use:
-
-## Import the package
-To use this plugin, follow the [plugin installation instructions](https://pub.dev/packages/simple_code#-installing-tab-).
-
-## Use the plugin
-Add the following import to your Dart code:
-```dart
-import 'package:simple_code/simple_code.dart';
+Container(
+    width: wsz(150),
+    height: hsz(150),
+    color: Colors.red,
+),
 ```
-# Getting Started
 
-```dart
-return MaterialApp(
-    navigatorKey: SimpleNavigator.key,
-    home: new MyApp(),
-);
-``` 
-
-You can change the standard screen size: 
-```dart
-SimpleCode.changeEmulatorSize(heigth: 640, width: 360);
-``` 
-
-heigth is a size of prototipe heigth and
-width is a size of prototipe width
-```dart
+You can change the standard screen size:
 640 (height) and 360 (width) are the default Android screen size in Adobe XD.
 Change this to the screen size used in the prototype.
-``` 
-
-
-## Text
 ```dart
-ExpandedText("My Text"); 
+SimpleCode.changeEmulatorSize(heigth: 640, width: 360);
+```
 
-``` 
+## Simple Navigator
+Navigator withoutContext and builder
 ```dart
-Text("My Text",style: TextStyle(fontSize: sz(15))); 
-``` 
+SimpleNavigator.push(cupertinoPageRoute(Page()));
+SimpleNavigator.pushNamed('/nextPage');
+SimpleNavigator.showDialog(
+  widget: Dialog(),
+  withBlackBackground: false,
+  barrierDismissible: false,
+);
+```
 
-You can change max and min font Size
+Navigator withCustomTransitions
+![Custom PageRoute Demo](demo/custom_page_route.gif.gif)
+```dart
+SimpleNavigator.push(customPageRoute(
+  NewPage(),
+  curve: Curves.easeOutBack,
+  duration: Duration(milliseconds: 600),
+  transitions: [
+    Transition.slide_from_top,
+    Transition.slide_from_rigth,
+  ],
+));
+enum Transition {
+  fade_in,
+  slide_from_bottom,
+  slide_from_rigth,
+  slide_from_left,
+  slide_from_top,
+  zoom_in,
+}
+```
 
-
+## Simple Utils
+Check if are in debug mode
+Check if have internet connection
+```dart
+SimpleUtils.isDev
+await SimpleUtils.internetConnection
+```
 
 ## Simple Billing
+Simple InAppPurchases with Cache
 ```dart
 await SimpleBilling.init(
   onPurchaseUpdated: (String productId, bool isNewPurchase) {},
   productsId: allProductsIds,
-  popUpWidget: SimpleBilling.defaultPopUpWidget,
-  offline: true,
 );
 SimpleBilling.buyProduct(productId, context: context);
 SimpleBilling.checkPurchase(productId);
@@ -114,53 +142,21 @@ SimpleRateMyApp.dontShowMore();
 SimpleRateMyApp.reset();
 ```
 
-## Navigator without context
+# Getting Started
+
 ```dart
-SimpleNavigator.push(cupertinoPageRoute(Page()));
-```
-
-You can choose a list of Transitions, to match animations
-
-``` dart
-SimpleNavigator.push(customPageRoute(
-    Page(),
-    curve: Curves.easeOutBack,
-    duration: Duration(milliseconds: 600),
-    transitions: [
-        Transition.slide_from_top,
-        Transition.slide_from_rigth,
-        Transition.fade_in,
-    ],
-));
+return MaterialApp(
+    navigatorKey: SimpleNavigator.key,
+    home: new MyApp(),
+);
 ``` 
 
-Transitions:
-```dart
-fade_in, slide_from_bottom, slide_from_rigth, slide_from_left, slide_from_top, zoom_in,
-``` 
-Curves:
-```dart
- All types of Curves
- Ex: Curves.easeIn
-``` 
+or 
 
-Types:
-    
 ```dart
- pop, push, pushReplacement, etc... 
+SimpleNavigator.changeNavigatorKey(externalKey);
+return MaterialApp(
+    navigatorKey: externalKey,
+    home: new MyApp(),
+);
 ``` 
-## Icons
-```dart
-new Expanded(child: ExpandedIcon(Icons.wifi)); 
-``` 
-or
-```dart
-ExpandedIcon(Icons.wifi);
-``` 
-or
-```dart
-new Icon(Icons.youtube_searched_for, size: sz(50));
-``` 
-to responsive icon without expanded
-
-### Yes, it's that easy.

@@ -1,4 +1,4 @@
-part of billing;
+part of simple_code;
 
 class _DefaultBillingPopUp extends StatelessWidget {
   @override

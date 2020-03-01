@@ -1,4 +1,4 @@
-part of navigator;
+part of simple_code;
 
 enum Transition {
   fade_in,
@@ -40,7 +40,12 @@ class _Route {
 
   static PageRoute customPageRoute(dynamic page, List<Transition> transitions,
       Curve curve, Duration duration) {
-    return _RoutedPage(page, duration, curve, transitions);
+    return _RoutedPage(
+      page,
+      duration,
+      curve,
+      transitions,
+    );
   }
 }
 

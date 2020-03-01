@@ -1,4 +1,4 @@
-part of rate_my_app;
+part of simple_code;
 
 class _RateMyAppSharedPrefs {
   static final String _prefix = 'srma_';

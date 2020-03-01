@@ -1,7 +1,4 @@
-import 'dart:math';
-
-import 'package:flutter/material.dart';
-import '../simple_navigator/simple_navigator.dart';
+part of simple_code;
 
 double sz(double size) {
   return SimpleCode._size(size);

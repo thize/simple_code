@@ -1,4 +1,4 @@
-part of billing;
+part of simple_code;
 
 class _BillingSharedPrefs {
   static final String _prefix = 'sb_';

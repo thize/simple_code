@@ -1,40 +1,44 @@
+##  3.4.0
+* [Feat] SimpleUtils Class
+* [Feat] AnimatedTween
+* [Feat] AnimatedButton
+
 ##  3.3.0
-* Feat SimpleProvider
-* Feat MultiStreamBuilder Widget
+* [Feat] MultiStreamBuilder Widget
 
 ##  3.2.8+1/3.2.8+2
 * Update README
 
 ## 3.2.8
-* Fix SimpleBilling ClosePopUp
+* [Fix] SimpleBilling ClosePopUp
 
 ## 3.2.7
-* Fix SimpleBilling Consume Item Android
+* [Fix] SimpleBilling Consume Item Android
 
 ## 3.2.6
-* Feat customPageBuilder
+* [Feat] customPageBuilder
 
 ## 3.2.5
 * Update README
 
 ## 3.2.4
-* Fix return type SimpleNavigator.pop()
+* [Fix] return type SimpleNavigator.pop()
 
 ## 3.2.3
-* Fix SimpleBilling getPrice to return null
+* [Fix] SimpleBilling getPrice to return null
 
 ## 3.2.2
-* Fix SimpleBilling contains null
+* [Fix] SimpleBilling contains null
 
 ## 3.2.1
-* Fix SimpleBilling getPrice
-* Feat SimpleBilling getProductById
+* [Fix] SimpleBilling getPrice
+* [Feat] SimpleBilling getProductById
 
 ## 3.2.0
 * New Feature SimpleRateMyApp
 
 ## 3.1.2
-* Fix SimpleBilling Offline Purchases
+* [Fix] SimpleBilling Offline Purchases
 
 ## 3.1.1
 * SimpleBilling.products
@@ -59,7 +63,7 @@ setSc(context); just once
 
 ## 1.1.2
 
-* Fix Curves
+* [Fix] Curves
 * Added route generator
 
 ## 1.1.1
@@ -68,11 +72,11 @@ setSc(context); just once
 
 ## 1.1.0
 
-* Readme Fix
+* Readme [Fix]
 
 ## 1.0.11
 
-* Fix bug color expandedText
+* [Fix] bug color expandedText
 * sC.widget(size:50) to sC.size(50)
 
 ## 1.0.0

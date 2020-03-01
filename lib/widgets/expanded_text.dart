@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of simple_code;
 
 class ExpandedText extends StatefulWidget {
   const ExpandedText(
@@ -6,7 +6,7 @@ class ExpandedText extends StatefulWidget {
     Key key,
     this.style,
     this.strutStyle,
-    this.minFontSize = 12,
+    this.minFontSize = 1,
     this.maxFontSize = double.maxFinite,
     this.textAlign,
     this.textDirection,
@@ -27,7 +27,7 @@ class ExpandedText extends StatefulWidget {
     Key key,
     this.style,
     this.strutStyle,
-    this.minFontSize = 12,
+    this.minFontSize = 1,
     this.maxFontSize = double.maxFinite,
     this.textAlign,
     this.textDirection,

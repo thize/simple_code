@@ -1,8 +1,4 @@
-import 'dart:math';
-
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import '../simple_code.dart';
+part of simple_code;
 
 class ExpandedIcon extends StatelessWidget {
   const ExpandedIcon(

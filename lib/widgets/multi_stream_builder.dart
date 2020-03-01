@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of simple_code;
 
 class MultiStreamBuilder extends StatefulWidget {
   const MultiStreamBuilder(
