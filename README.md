@@ -48,10 +48,10 @@ new AnimatedTween(
 ```
 
 ## Simple Responsivity
-Responsivity izier
-wsz = size in relation to prototype Width
-hsz = size in relation to prototype Height
-sz = min between wsz and hsz
+Responsivity izier  
+wsz = size in relation to prototype Width  
+hsz = size in relation to prototype Height  
+sz = min between wsz and hsz  
 ```dart
 Container(
     width: wsz(150),
@@ -60,9 +60,9 @@ Container(
 ),
 ```
 
-You can change the standard screen size:
-640 (height) and 360 (width) are the default Android screen size in Adobe XD.
-Change this to the screen size used in the prototype.
+You can change the standard screen size:  
+640 (height) and 360 (width) are the default Android screen size in Adobe XD.  
+Change this to the screen size used in the prototype.  
 ```dart
 SimpleCode.changeEmulatorSize(heigth: 640, width: 360);
 ```
@@ -102,7 +102,7 @@ enum Transition {
 ```
 
 ## Simple Utils
-Check if are in debug mode
+Check if are in debug mode  
 Check if have internet connection
 ```dart
 SimpleUtils.isDev
