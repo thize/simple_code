@@ -14,8 +14,8 @@ new ExpandedIcon(
   Icons.wifi,
 ),
 ```
-AnimatedButton
-![Animated Button Demo](demo/animated_button.gif)
+AnimatedButton  
+<img src="demo/animated_button.gif" width="360" height="640">
 ```dart
 new AnimatedButton(
   onTap: () {},
@@ -31,8 +31,8 @@ new AnimatedButton(
 ),
 ```
 
-AnimatedTween
-![Animated Tween Demo](demo/animated_tween.gif)
+AnimatedTween  
+<img src="demo/animated_tween.gif" width="360" height="640">
 ```dart
 new AnimatedTween(
   offset: Offset(450, 0),
@@ -79,8 +79,8 @@ SimpleNavigator.showDialog(
 );
 ```
 
-Navigator withCustomTransitions
-![Custom PageRoute Demo](demo/custom_page_route.gif.gif)
+Navigator withCustomTransitions  
+<img src="demo/custom_page_route.gif" width="360" height="640">
 ```dart
 SimpleNavigator.push(customPageRoute(
   NewPage(),
