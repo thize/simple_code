@@ -60,10 +60,10 @@ class _AnimatedTweenState extends State<AnimatedTween> {
 
   @override
   Widget build(BuildContext context) {
-    return _buildScale(
+    return _buildOffset(
       _buildAngle(
         _buildOpacity(
-          _buildOffset(widget.child),
+          _buildScale(widget.child),
         ),
       ),
     );

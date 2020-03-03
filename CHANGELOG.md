@@ -1,3 +1,6 @@
+##  3.4.1
+* [Fix] AnimatedButton Offset
+
 ##  3.4.0
 * [Feat] SimpleUtils Class
 * [Feat] AnimatedTween
