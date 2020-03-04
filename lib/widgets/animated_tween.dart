@@ -81,7 +81,7 @@ class _AnimatedTweenState extends State<AnimatedTween> {
           return widget.builder(context, animationValue, child);
         },
         child: widget.child,
-        tween: Tween<double>(begin: 0, end: 1),
+        tween: Tween<double>(begin: 0, end: stopped ? 0 : 1),
       );
     }
     return widget.child;

@@ -1,3 +1,6 @@
+##  3.4.2+1
+* [Fix] AnimatedTween Builder delay
+
 ##  3.4.2
 * [Feat] AnimatedTween Builder
 
