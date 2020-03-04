@@ -3,7 +3,8 @@ part of simple_code;
 class AnimatedTween extends StatefulWidget {
   const AnimatedTween({
     Key key,
-    @required this.child,
+    this.child,
+    this.builder,
     this.duration = const Duration(milliseconds: 600),
     this.curve = Curves.fastOutSlowIn,
     this.delay,
@@ -13,7 +14,9 @@ class AnimatedTween extends StatefulWidget {
     this.scale,
     this.offset,
   })  : assert(opacity == null || opacity >= 0 && opacity <= 1),
+        assert(child != null || builder != null),
         super(key: key);
+  final Widget Function(BuildContext _, double value, Widget child) builder;
   final Widget child;
   final Duration duration;
   final Curve curve;
@@ -63,10 +66,25 @@ class _AnimatedTweenState extends State<AnimatedTween> {
     return _buildOffset(
       _buildAngle(
         _buildOpacity(
-          _buildScale(widget.child),
+          _buildScale(
+            _buildBuilder(),
+          ),
         ),
       ),
     );
+  }
+
+  Widget _buildBuilder() {
+    if (widget.builder != null) {
+      return _buildTween(
+        animationBulder: (Widget child, double animationValue) {
+          return widget.builder(context, animationValue, child);
+        },
+        child: widget.child,
+        tween: Tween<double>(begin: 0, end: 1),
+      );
+    }
+    return widget.child;
   }
 
   Widget _buildScale(Widget child) {

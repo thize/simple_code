@@ -1,3 +1,6 @@
+##  3.4.2
+* [Feat] AnimatedTween Builder
+
 ##  3.4.1
 * [Fix] AnimatedButton Offset
 
