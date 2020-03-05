@@ -1,3 +1,6 @@
+##  3.4.3
+* [Fix] Added AnimatedButton onTapDelay tag
+
 ##  3.4.2+1
 * [Fix] AnimatedTween Builder delay
 

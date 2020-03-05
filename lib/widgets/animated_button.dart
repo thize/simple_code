@@ -6,6 +6,7 @@ class AnimatedButton extends StatefulWidget {
     @required this.child,
     @required this.onTap,
     this.duration = const Duration(milliseconds: 800),
+    this.onTapDelay = 100,
     this.curve = Curves.easeOutCirc,
     this.angle,
     this.opacity,
@@ -19,6 +20,9 @@ class AnimatedButton extends StatefulWidget {
   final Duration duration;
   final Curve curve;
   final void Function() onTap;
+
+  /// On Tap Delay in milliseconds
+  final int onTapDelay;
 
   /// In Degrees
   final double angle;
@@ -65,7 +69,7 @@ class _AnimatedButtonState extends State<AnimatedButton> {
   dynamic get _onTap => widget.onTap == null
       ? null
       : () async {
-          await Future.delayed(Duration(milliseconds: 100));
+          await Future.delayed(Duration(milliseconds: widget.onTapDelay));
           setState(() => tapped = false);
           widget.onTap();
         };
