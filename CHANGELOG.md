@@ -1,3 +1,6 @@
+##  3.4.4
+* [Fix] Added AnimatedButton Builder
+
 ##  3.4.3
 * [Fix] Added AnimatedButton onTapDelay tag
 
@@ -5,10 +8,10 @@
 * [Fix] AnimatedTween Builder delay
 
 ##  3.4.2
-* [Feat] AnimatedTween Builder
+* [Feat] Added AnimatedTween Builder
 
 ##  3.4.1
-* [Fix] AnimatedButton Offset
+* [Fix] Added AnimatedButton Offset
 
 ##  3.4.0
 * [Feat] SimpleUtils Class

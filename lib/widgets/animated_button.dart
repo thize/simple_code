@@ -3,10 +3,11 @@ part of simple_code;
 class AnimatedButton extends StatefulWidget {
   const AnimatedButton({
     Key key,
-    @required this.child,
     @required this.onTap,
+    this.child,
+    this.builder,
     this.duration = const Duration(milliseconds: 800),
-    this.onTapDelay = 100,
+    this.onTapDelay = 0,
     this.curve = Curves.easeOutCirc,
     this.angle,
     this.opacity,
@@ -15,7 +16,10 @@ class AnimatedButton extends StatefulWidget {
     this.highlightColor,
     this.splashColor,
   })  : assert(opacity == null || opacity >= 0 && opacity <= 1),
+        assert(builder != null || child != null),
+        assert(builder == null || child == null),
         super(key: key);
+  final Widget Function(bool tapped) builder;
   final Widget child;
   final Duration duration;
   final Curve curve;
@@ -56,7 +60,7 @@ class _AnimatedButtonState extends State<AnimatedButton> {
         onTapCancel: _onTapCancel,
         highlightColor: widget.highlightColor,
         splashColor: widget.splashColor,
-        child: widget.child,
+        child: widget.child ?? widget.builder(tapped),
       ),
     );
   }
