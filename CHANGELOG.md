@@ -1,3 +1,6 @@
+##  3.5.0
+* [Feat] SContainer Widget (Simple Container)
+
 ##  3.4.4
 * [Fix] Added AnimatedButton Builder
 

@@ -47,6 +47,91 @@ new AnimatedTween(
 ),
 ```
 
+## Simple Container
+Simple Container to put all style in one place (like CSS)
+
+Without SimpleContainer
+```dart
+AnimatedPositioned(
+  top: 5,
+  left: 5,
+  duration: Duration(milliseconds: 250),
+  curve: Curves.easeInCubic,
+  child: InkWell(
+    onTap: () {},
+    child: Align(
+      alignment: Alignment.topRight,
+      child: Transform.translate(
+        offset: Offset(25, 0),
+        child: Transform.rotate(
+          angle: 25 * pi / 180,
+          child: Transform.scale(
+            scale: 1.5,
+            child: AnimatedContainer(
+              child: Text('Example'),
+              width: 150,
+              height: 50,
+              margin: EdgeInsets.all(25),
+              padding: EdgeInsets.all(2),
+              alignment: Alignment.center,
+              duration: Duration(milliseconds: 250),
+              curve: Curves.easeInCubic,
+              onEnd: () {},
+              decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black,
+                      offset: Offset(0, 4),
+                      blurRadius: 4)
+                ],
+                shape: BoxShape.circle,
+                image: DecorationImage(image: AssetImage('path')),
+                gradient:
+                    LinearGradient(colors: [Colors.red, Colors.yellow]),
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  ),
+)
+```
+
+Without SimpleContainer
+```dart
+SContainer(
+  child: Text('Example'),
+  gestures: SGestures(onTap: () {}, animations: SGesturesAnimation()),
+  style: SContainerStyle(
+    positioned: SPositioned(top: 5, left: 5, animated: true),
+    alignmentExternal: Alignment.topRight,
+    transform: STransform(scale: 1.5, degrees: 25, dx: 25, animated: true),
+    elevation: SElevation(5),
+    width: 150,
+    height: 50,
+    alignment: Alignment.center,
+    color: Colors.green,
+    animated: true,
+    borderRadius: BorderRadius.circular(10),
+    shadows: [SShadow(color: Colors.black, dy: 4, blurRadius: 4)],
+    circle: true,
+    decorationImage: DecorationImage(image: AssetImage('path')),
+    gradient: LinearGradient(colors: [Colors.red, Colors.yellow]),
+    margin: SEdgeInsets(all: 25),
+    padding: SEdgeInsets(all: 2),
+    animation: SAnimation(
+      curve: Curves.easeInCubic,
+      milliseconds: 250,
+      onEnd: (SAnimationEnd from) {},
+    ),
+  ),
+)
+```
+
+
 ## Simple Responsivity
 Responsivity izier  
 wsz = size in relation to prototype Width  

@@ -1,10 +1,10 @@
 name: simple_code
-description: Make Responsive, Development and InAppPurchases Faster and Easier
-version: 3.4.4
+description: Make Development Faster and Easier
+version: 3.5.0
 homepage: https://github.com/thize/simple_code
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: ">=2.3.0 <3.0.0"
 
 dependencies:
   app_review: ^1.1.0+1
