@@ -15,9 +15,9 @@ double hsz(double size) {
 class SimpleCode {
   static double _emulatorHeigth = 640;
   static double _emulatorWidth = 360;
-  static double get _width =>
+  static double get width =>
       MediaQuery.of(SimpleNavigator.key.currentContext).size.width;
-  static double get _heigth =>
+  static double get heigth =>
       MediaQuery.of(SimpleNavigator.key.currentContext).size.height;
   static void changeEmulatorSize(
       {@required double heigth, @required double width}) {
@@ -28,12 +28,12 @@ class SimpleCode {
   static double _size(double size, {bool w = false, bool h = false}) {
     try {
       if (w) {
-        size = (size / _emulatorWidth) * _width;
+        size = (size / _emulatorWidth) * width;
       } else if (h) {
-        size = (size / _emulatorHeigth) * _heigth;
+        size = (size / _emulatorHeigth) * heigth;
       } else {
-        size = min((size / _emulatorWidth) * _width,
-            (size / _emulatorHeigth) * _heigth);
+        size = min(
+            (size / _emulatorWidth) * width, (size / _emulatorHeigth) * heigth);
       }
     } catch (error) {
       String erro = '';

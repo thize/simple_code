@@ -22,9 +22,11 @@ class SContainerStyle {
     this.circle = false,
     this.animated = false,
     this.animation = const SAnimation(),
-  })  : assert(!(transform?.animated ?? false)),
-        assert(!(positioned?.animated ?? false)),
-        assert(!(animated ?? false));
+  })  : assert(transform?.animated ?? [] != null ?? true),
+        assert(circle != null),
+        assert(expanded != null),
+        assert(positioned?.animated ?? [] != null ?? true),
+        assert(animated != null);
   final SAnimation animation;
   final bool animated;
   final double width;

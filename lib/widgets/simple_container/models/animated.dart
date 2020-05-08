@@ -23,7 +23,7 @@ class SAnimation {
     return AnimatedContainer(
       duration: Duration(milliseconds: milliseconds),
       curve: curve,
-      onEnd: () => onEnd(SAnimationEnd.container),
+      onEnd: onEnd == null ? null : () => onEnd(SAnimationEnd.container),
       child: AnimatedSwitcher(
         duration: Duration(milliseconds: milliseconds),
         switchOutCurve: curve,

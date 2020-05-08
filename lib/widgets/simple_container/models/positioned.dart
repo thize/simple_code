@@ -24,7 +24,9 @@ class SPositioned {
         duration: Duration(milliseconds: style.animation.milliseconds),
         curve: style.animation.curve,
         bottom: bottom,
-        onEnd: () => style.animation.onEnd(SAnimationEnd.positioned),
+        onEnd: style.animation.onEnd == null
+            ? null
+            : () => style.animation.onEnd(SAnimationEnd.positioned),
         height: height,
         left: left,
         right: right,

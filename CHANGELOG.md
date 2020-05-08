@@ -1,4 +1,8 @@
 ##  3.5.0
+* [Fix] SContainer Animation
+* [Feat] SimpleCode.width and SimpleCode.heigth
+
+##  3.5.0
 * [Feat] SContainer Widget (Simple Container)
 
 ##  3.4.4
