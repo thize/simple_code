@@ -1,3 +1,6 @@
+##  3.6.0
+* [Fix] Update to Flutter 1.17
+
 ##  3.5.1
 * [Fix] SContainer Animation
 * [Feat] SimpleCode.width and SimpleCode.heigth
