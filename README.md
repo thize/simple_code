@@ -100,7 +100,7 @@ AnimatedPositioned(
 )
 ```
 
-Without SimpleContainer
+With SimpleContainer
 ```dart
 SContainer(
   child: Text('Example'),
