@@ -1,6 +1,6 @@
 part of simple_code;
 
-class MultiStreamBuilder extends StatefulWidget {
+class MultiStreamBuilder extends StatelessWidget {
   const MultiStreamBuilder(
       {Key key,
       @required this.streams,
@@ -15,30 +15,27 @@ class MultiStreamBuilder extends StatefulWidget {
       builder;
 
   @override
-  _MultiStreamBuilderState createState() => _MultiStreamBuilderState();
-}
-
-class _MultiStreamBuilderState extends State<MultiStreamBuilder> {
-  StreamBuilder streamsBuilder;
-  List<AsyncSnapshot> snapshots = [];
-
-  @override
   Widget build(BuildContext context) {
-    if (snapshots.isEmpty) streamsBuilder = _buildStreamBuilder(0, context);
+    StreamBuilder streamsBuilder;
+    List<AsyncSnapshot> snapshots = [];
+    if (snapshots.isEmpty) {
+      streamsBuilder = _buildStreamBuilder(0, context, snapshots);
+    }
     return streamsBuilder;
   }
 
-  Widget _buildStreamBuilder(int index, BuildContext context) {
-    if (widget.streams.length == index) {
-      return widget.builder(context, snapshots);
-    }
+  Widget _buildStreamBuilder(
+      int index, BuildContext context, List<AsyncSnapshot> snapshots) {
     snapshots.add(null);
     return StreamBuilder(
-      stream: widget.streams[index],
-      initialData: widget.initialDatas[index],
+      stream: streams[index],
+      initialData: initialDatas[index],
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         snapshots[index] = snapshot;
-        return _buildStreamBuilder(index + 1, context);
+        if (index == streams.length - 1) {
+          return builder(context, snapshots);
+        }
+        return _buildStreamBuilder(index + 1, context, snapshots);
       },
     );
   }

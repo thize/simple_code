@@ -4,16 +4,18 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'dart:ui';
-import 'package:flutter/foundation.dart' as foundation;
 
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:app_review/app_review.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart' as foundation;
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter_inapp_purchase/flutter_inapp_purchase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+export 'package:bordered_text/bordered_text.dart';
 
 part 'simple_billing/billing_shared_preferences.dart';
 part 'simple_billing/default_pop_up.dart';
@@ -29,13 +31,12 @@ part 'widgets/animated_tween.dart';
 part 'widgets/expanded_icon.dart';
 part 'widgets/expanded_text.dart';
 part 'widgets/multi_stream_builder.dart';
-
-part 'widgets/simple_container/simple_container.dart';
 part 'widgets/simple_container/models/animated.dart';
+part 'widgets/simple_container/models/edge_insets.dart';
 part 'widgets/simple_container/models/elevation.dart';
 part 'widgets/simple_container/models/gestures.dart';
 part 'widgets/simple_container/models/positioned.dart';
+part 'widgets/simple_container/models/shadow.dart';
 part 'widgets/simple_container/models/style.dart';
 part 'widgets/simple_container/models/transform.dart';
-part 'widgets/simple_container/models/shadow.dart';
-part 'widgets/simple_container/models/edge_insets.dart';
+part 'widgets/simple_container/simple_container.dart';

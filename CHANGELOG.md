@@ -1,3 +1,7 @@
+##  3.7.0
+* [Fix] MultiStreamBuilder rebuild
+* [Feat] BorderedText Widget (To Xd to Flutter)
+
 ##  3.6.0
 * [Fix] Update to Flutter 1.17
 

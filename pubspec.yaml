@@ -1,15 +1,16 @@
 name: simple_code
 description: Make Development Faster and Easier
-version: 3.6.0
+version: 3.7.0
 homepage: https://github.com/thize/simple_code
 
 environment:
   sdk: ">=2.3.0 <3.0.0"
 
 dependencies:
+  bordered_text: ^1.0.0
   app_review: ^1.1.0+1
-  shared_preferences: ^0.5.6+1
-  flutter_inapp_purchase: ^2.1.1
+  shared_preferences: ^0.5.7+2
+  flutter_inapp_purchase: ^2.2.0
   flutter:
     sdk: flutter
 
