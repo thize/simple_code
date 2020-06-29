@@ -1,16 +1,13 @@
+##  4.0.0 [06/28/2020]
+
+* SimpleBilling extracted for its own package
+* SimpleRateMyApp extracted for its own package
+
 ##  3.7.0
-* [Fix] MultiStreamBuilder rebuild
 * [Feat] BorderedText Widget (To Xd to Flutter)
 
 ##  3.6.0
 * [Fix] Update to Flutter 1.17
-
-##  3.5.1
-* [Fix] SContainer Animation
-* [Feat] SimpleCode.width and SimpleCode.heigth
-
-##  3.5.0
-* [Feat] SContainer Widget (Simple Container)
 
 ##  3.4.4
 * [Fix] Added AnimatedButton Builder
@@ -31,9 +28,6 @@
 * [Feat] SimpleUtils Class
 * [Feat] AnimatedTween
 * [Feat] AnimatedButton
-
-##  3.3.0
-* [Feat] MultiStreamBuilder Widget
 
 ##  3.2.8+1/3.2.8+2
 * Update README

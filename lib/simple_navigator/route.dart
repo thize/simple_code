@@ -1,29 +1,15 @@
 part of simple_code;
 
 enum Transition {
-  fade_in,
-  slide_from_bottom,
-  slide_from_rigth,
-  slide_from_left,
-  slide_from_top,
-  zoom_in,
+  fadeIn,
+  slideFromBottom,
+  slideFromRigth,
+  slideFromLeft,
+  slideFromTop,
+  zoomIn,
 }
 
-PageRoute cupertinoPageRoute(Widget page) => _Route.cupertinoPageRoute(page);
-PageRoute materialPageRoute(Widget page) => _Route.materialPageRoute(page);
-PageRoute customPageRoute(Widget page,
-        {List<Transition> transitions = const [Transition.slide_from_rigth],
-        Curve curve = Curves.linear,
-        Duration duration = const Duration(milliseconds: 300)}) =>
-    _Route.customPageRoute(page, transitions, curve, duration);
-
-PageRoute customPageBuilder(Widget Function(BuildContext) builder,
-        {List<Transition> transitions = const [Transition.slide_from_rigth],
-        Curve curve = Curves.linear,
-        Duration duration = const Duration(milliseconds: 300)}) =>
-    _Route.customPageRoute(builder, transitions, curve, duration);
-
-class _Route {
+class SimpleRoute {
   static PageRoute cupertinoPageRoute(Widget page) {
     return CupertinoPageRoute(builder: (BuildContext context) {
       return page;
@@ -38,110 +24,76 @@ class _Route {
     );
   }
 
-  static PageRoute customPageRoute(dynamic page, List<Transition> transitions,
-      Curve curve, Duration duration) {
-    return _RoutedPage(
-      page,
-      duration,
-      curve,
-      transitions,
-    );
+  static PageRoute customPageRoute(
+    Widget page, {
+    List<Transition> transitions = const [Transition.fadeIn],
+    Curve curve = Curves.linear,
+    Duration duration = const Duration(milliseconds: 600),
+  }) {
+    return _RoutedPage(page, duration, curve, transitions);
   }
 }
 
 class _RoutedPage extends PageRouteBuilder {
   _RoutedPage(this.page, this.duration, this.curve, this.transitions)
       : super(
-            pageBuilder: (
-              BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-            ) =>
-                page,
-            transitionDuration: duration,
-            transitionsBuilder: (
-              BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-              Widget child,
-            ) {
-              _transitions = transitions.toList();
-              _transitions.add(null);
-              _animation = animation;
-              _curve = curve;
-              _page = page is Widget ? page : page(context);
-              return _transition(0);
-            });
-  final dynamic page;
-  static Widget _page;
+          pageBuilder: (a, b, c) => page,
+          transitionDuration: duration,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return _transition(animation, curve, transitions, 0, child);
+          },
+        );
+
+  final Widget page;
   final Duration duration;
   final Curve curve;
-  static List<Transition> _transitions = [];
-  static Animation<double> _animation;
-  static Curve _curve;
   final List<Transition> transitions;
 
-  static Widget _transition(int pos) {
-    switch (_transitions[pos]) {
-      case Transition.zoom_in:
-        return _zoomIn(pos + 1);
+  static Widget _transition(Animation<double> animation, Curve curve,
+      List<Transition> transitions, int index, Widget widget) {
+    final Widget child = transitions.length == index
+        ? widget
+        : _transition(animation, curve, transitions, index + 1, widget);
+    switch (transitions[index]) {
+      case Transition.zoomIn:
+        return _zoomIn(animation, curve, child);
         break;
-      case Transition.slide_from_rigth:
-        return _slideFromSide(pos + 1, 1, 0);
+      case Transition.slideFromRigth:
+        return _slideFromSide(Alignment.centerRight, animation, curve, child);
         break;
-      case Transition.slide_from_left:
-        return _slideFromSide(pos + 1, -1, 0);
+      case Transition.slideFromLeft:
+        return _slideFromSide(Alignment.centerLeft, animation, curve, child);
         break;
-      case Transition.slide_from_top:
-        return _slideFromSide(pos + 1, 0, -1);
+      case Transition.slideFromTop:
+        return _slideFromSide(Alignment.topCenter, animation, curve, child);
         break;
-      case Transition.slide_from_bottom:
-        return _slideFromSide(pos + 1, 0, 1);
+      case Transition.slideFromBottom:
+        return _slideFromSide(Alignment.bottomCenter, animation, curve, child);
         break;
-      case Transition.fade_in:
-        return fadeIn(
-          pos + 1,
-        );
+      case Transition.fadeIn:
+        return _fadeIn(animation, child);
         break;
       default:
-        throw ('Invalid navFrom');
+        throw 'Invalid navFrom';
     }
   }
 
-  static Widget _slideFromSide(int pos, double dx, double dy) {
+  static Widget _slideFromSide(
+      Alignment side, Animation<double> parent, Curve curve, Widget child) {
     return SlideTransition(
-      position: Tween<Offset>(
-        begin: Offset(dx, dy),
-        end: Offset.zero,
-      ).animate(
-        CurvedAnimation(
-          parent: _animation,
-          curve: _curve,
-        ),
-      ),
-      child: _transitions[pos] == null ? _page : _transition(pos),
-    );
+        position: Tween<Offset>(begin: Offset(side.x, side.y), end: Offset.zero)
+            .animate(CurvedAnimation(parent: parent, curve: curve)),
+        child: child);
   }
 
-  static Widget _zoomIn(int pos) {
+  static Widget _zoomIn(Animation<double> parent, Curve curve, Widget child) {
     return ScaleTransition(
-      scale: Tween<double>(
-        begin: 0.0,
-        end: 1.0,
-      ).animate(
-        CurvedAnimation(
-          parent: _animation,
-          curve: _curve,
-        ),
-      ),
-      child: _transitions[pos] == null ? _page : _transition(pos),
-    );
+        scale: Tween<double>(begin: 0.0, end: 1.0)
+            .animate(CurvedAnimation(parent: parent, curve: curve)),
+        child: child);
   }
 
-  static Widget fadeIn(int pos) {
-    return FadeTransition(
-      opacity: _animation,
-      child: _transitions[pos] == null ? _page : _transition(pos),
-    );
+  static Widget _fadeIn(Animation<double> opacity, Widget child) {
+    return FadeTransition(opacity: opacity, child: child);
   }
 }
