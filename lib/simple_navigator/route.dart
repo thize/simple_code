@@ -10,13 +10,13 @@ enum Transition {
 }
 
 class SimpleRoute {
-  static PageRoute cupertinoPageRoute(Widget page) {
+  static PageRoute cupertino(Widget page) {
     return CupertinoPageRoute(builder: (BuildContext context) {
       return page;
     });
   }
 
-  static PageRoute materialPageRoute(Widget page) {
+  static PageRoute material(Widget page) {
     return MaterialPageRoute(
       builder: (BuildContext context) {
         return page;
@@ -24,7 +24,7 @@ class SimpleRoute {
     );
   }
 
-  static PageRoute customPageRoute(
+  static PageRoute custom(
     Widget page, {
     List<Transition> transitions = const [Transition.fadeIn],
     Curve curve = Curves.linear,
