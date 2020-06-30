@@ -26,7 +26,8 @@ class SimpleCode {
 
   static Size get _screenSize => MediaQuery.of(_context).size;
 
-  static set changeEmulatorSize(Size size) => _emuSize = size;
+  // ignore: use_setters_to_change_properties
+  static void changeEmulatorSize(Size size) => _emuSize = size;
 
   // ignore: use_setters_to_change_properties
   static void changeNavigatorKey(GlobalKey<NavigatorState> newKey) =>

@@ -1,4 +1,4 @@
-##  4.0.0 [06/28/2020]
+##  4.0.1 [06/28/2020]
 
 * SimpleBilling extracted for its own package
 * SimpleRateMyApp extracted for its own package
