@@ -33,6 +33,7 @@ class AnimatedTween extends StatefulWidget {
 
 class _AnimatedTweenState extends State<AnimatedTween> {
   bool stopped = true;
+
   @override
   void initState() {
     _initState();
@@ -45,7 +46,9 @@ class _AnimatedTweenState extends State<AnimatedTween> {
         Future.delayed(widget.delay)
             .whenComplete(() => setState(() => stopped = false));
       } else {
-        stopped = false;
+        setState(() {
+          stopped = false;
+        });
       }
     }
   }
@@ -53,9 +56,6 @@ class _AnimatedTweenState extends State<AnimatedTween> {
   @override
   void didUpdateWidget(AnimatedTween oldWidget) {
     if (oldWidget.stopped != widget.stopped) {
-      setState(() {
-        stopped = true;
-      });
       _initState();
     }
     super.didUpdateWidget(oldWidget);

@@ -1,3 +1,7 @@
+##  4.0.3 [07/09/2020]
+
+* Fix AnimatedTween delay
+
 ##  4.0.2 [06/28/2020]
 
 * SimpleBilling extracted for its own package
