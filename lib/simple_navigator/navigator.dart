@@ -53,39 +53,16 @@ class _Navigator {
         .pushNamedAndRemoveUntil(routeName, predicate, arguments: arguments);
   }
 
-  Future<void> showDialog(
-      {@required Widget widget,
-      bool withBlackBackground = true,
-      bool barrierDismissible = true}) async {
-    //TODO: improve
-    final Widget child = Material(
-      color: Colors.transparent,
-      child: barrierDismissible ? _dismissibleWidget(widget) : widget,
-    );
-    if (!withBlackBackground) {
-      return material.showGeneralDialog(
-        context: _navigatorKey.currentState.overlay.context,
-        pageBuilder: (context, _, c) => child,
-        barrierDismissible: false,
-        transitionDuration: const Duration(milliseconds: 200),
-      );
-    }
+  Future<void> showDialog({
+    @required Widget widget,
+    bool withBlackBackground = true,
+    bool barrierDismissible = true,
+  }) async {
     return material.showDialog(
       context: _navigatorKey.currentState.overlay.context,
-      builder: (_) => child,
-      barrierDismissible: false,
-    );
-  }
-
-  Stack _dismissibleWidget(Widget child) {
-    return Stack(
-      children: <Widget>[
-        InkWell(
-            onTap: () => pop(),
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent),
-        child,
-      ],
+      builder: (_) => widget,
+      barrierDismissible: barrierDismissible,
+      barrierColor: withBlackBackground ? null : Colors.transparent,
     );
   }
 }

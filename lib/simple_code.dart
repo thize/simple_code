@@ -50,19 +50,12 @@ class SimpleCode {
   }
 
   static double _sz(double size) {
-    _checkKey();
-    final bool emuIsHorizontal = _isHorizontal(_emuSize);
-    final bool isVertical = _isVertical(_emuSize) && _isVertical(_screenSize);
-    final bool isHorizontal =
-        _isHorizontal(_emuSize) && _isHorizontal(_screenSize);
-    if (isVertical) return _wsz(size);
-    if (isHorizontal || emuIsHorizontal) return _hsz(size);
-    return _wsz(size);
+    return min(_wsz(size), _hsz(size));
   }
 
-  static bool _isVertical(Size size) => size.width <= size.height;
+  // static bool _isVertical(Size size) => size.width <= size.height;
 
-  static bool _isHorizontal(Size size) => size.height < size.width;
+  // static bool _isHorizontal(Size size) => size.height < size.width;
 }
 
 double sz(double size) {

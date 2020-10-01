@@ -1,3 +1,7 @@
+##  4.0.4 [10/01/2020]
+* [Fix] showDialog without black background
+* [Fix] sz function
+
 ##  4.0.3 [07/09/2020]
 
 * Fix AnimatedTween delay
