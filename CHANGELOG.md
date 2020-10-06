@@ -1,3 +1,6 @@
+##  4.0.5 [10/06/2020]
+* [Fix] showDialog without safeArea
+
 ##  4.0.4 [10/01/2020]
 * [Fix] showDialog without black background
 * [Fix] sz function

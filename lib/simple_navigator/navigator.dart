@@ -57,12 +57,14 @@ class _Navigator {
     @required Widget widget,
     bool withBlackBackground = true,
     bool barrierDismissible = true,
+    bool useSafeArea = false,
   }) async {
     return material.showDialog(
       context: _navigatorKey.currentState.overlay.context,
       builder: (_) => widget,
       barrierDismissible: barrierDismissible,
       barrierColor: withBlackBackground ? null : Colors.transparent,
+      useSafeArea: useSafeArea,
     );
   }
 }
