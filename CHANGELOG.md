@@ -1,3 +1,6 @@
+##  4.0.6 [10/06/2020]
+* [Fix] fix custom Route
+
 ##  4.0.5 [10/06/2020]
 * [Fix] showDialog without safeArea
 

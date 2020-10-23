@@ -33,7 +33,7 @@ class ExpandedIcon extends StatelessWidget {
           key: key,
           semanticLabel: semanticLabel,
           textDirection: textDirection,
-          size: sz(size),
+          size: wsz(size),
         );
       },
     );

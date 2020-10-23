@@ -51,7 +51,7 @@ class _RoutedPage extends PageRouteBuilder {
 
   static Widget _transition(Animation<double> animation, Curve curve,
       List<Transition> transitions, int index, Widget widget) {
-    final Widget child = transitions.length == index
+    final Widget child = transitions.length - 1 == index
         ? widget
         : _transition(animation, curve, transitions, index + 1, widget);
     switch (transitions[index]) {

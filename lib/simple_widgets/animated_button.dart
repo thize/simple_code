@@ -7,7 +7,7 @@ class AnimatedButton extends StatefulWidget {
     this.child,
     this.builder,
     this.duration = const Duration(milliseconds: 800),
-    this.onTapDelay = 0,
+    this.onTapDelay = 100,
     this.curve = Curves.easeOutCirc,
     this.angle,
     this.opacity,
@@ -19,7 +19,7 @@ class AnimatedButton extends StatefulWidget {
         assert(builder != null || child != null),
         assert(builder == null || child == null),
         super(key: key);
-  final Widget Function(bool tapped) builder;
+  final Widget Function(bool tapped, double animationValue) builder;
   final Widget child;
   final Duration duration;
   final Curve curve;
@@ -44,6 +44,7 @@ class AnimatedButton extends StatefulWidget {
 
 class _AnimatedButtonState extends State<AnimatedButton> {
   bool tapped = false;
+  
   @override
   Widget build(BuildContext context) {
     return AnimatedTween(
@@ -53,15 +54,17 @@ class _AnimatedButtonState extends State<AnimatedButton> {
       offset: widget.offset,
       opacity: widget.opacity,
       scale: widget.scale,
-      stopped: tapped,
-      child: InkWell(
-        onTapDown: _onTapDown,
-        onTap: _onTap,
-        onTapCancel: _onTapCancel,
-        highlightColor: widget.highlightColor,
-        splashColor: widget.splashColor,
-        child: widget.child ?? widget.builder(tapped),
-      ),
+      inEnd: tapped,
+      builder: (c, a, w) {
+        return InkWell(
+          onTapDown: _onTapDown,
+          onTap: _onTap,
+          onTapCancel: _onTapCancel,
+          highlightColor: widget.highlightColor,
+          splashColor: widget.splashColor,
+          child: widget.child ?? widget.builder(tapped, a),
+        );
+      },
     );
   }
 

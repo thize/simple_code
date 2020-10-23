@@ -8,7 +8,7 @@ class AnimatedTween extends StatefulWidget {
     this.duration = const Duration(milliseconds: 600),
     this.curve = Curves.fastOutSlowIn,
     this.delay,
-    this.stopped = false,
+    this.inEnd = false,
     this.angle,
     this.opacity,
     this.scale,
@@ -25,40 +25,20 @@ class AnimatedTween extends StatefulWidget {
   final Duration delay;
   final double opacity;
   final Offset offset;
-  final bool stopped;
+  final bool inEnd;
 
   @override
   _AnimatedTweenState createState() => _AnimatedTweenState();
 }
 
 class _AnimatedTweenState extends State<AnimatedTween> {
-  bool stopped = true;
+  bool inEnd = true;
 
-  @override
-  void initState() {
-    _initState();
-    super.initState();
-  }
-
-  void _initState() {
-    if (!widget.stopped) {
-      if (widget.delay != null) {
-        Future.delayed(widget.delay)
-            .whenComplete(() => setState(() => stopped = false));
-      } else {
-        setState(() {
-          stopped = false;
-        });
-      }
-    }
-  }
-
-  @override
-  void didUpdateWidget(AnimatedTween oldWidget) {
-    if (oldWidget.stopped != widget.stopped) {
-      _initState();
-    }
-    super.didUpdateWidget(oldWidget);
+  Future _initState() async {
+    await Future.delayed(widget.delay ?? Duration());
+    setState(() {
+      inEnd = widget.inEnd;
+    });
   }
 
   @override
@@ -74,6 +54,18 @@ class _AnimatedTweenState extends State<AnimatedTween> {
     );
   }
 
+  @override
+  void initState() {
+    inEnd = widget.inEnd;
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(AnimatedTween oldWidget) {
+    _initState();
+    super.didUpdateWidget(oldWidget);
+  }
+
   Widget _buildBuilder() {
     if (widget.builder != null) {
       return _buildTween(
@@ -81,7 +73,7 @@ class _AnimatedTweenState extends State<AnimatedTween> {
           return widget.builder(context, animationValue, child);
         },
         child: widget.child,
-        tween: Tween<double>(begin: 0, end: stopped ? 0 : 1),
+        tween: Tween<double>(begin: 0, end: inEnd ? 0 : 1),
       );
     }
     return widget.child;
@@ -92,7 +84,7 @@ class _AnimatedTweenState extends State<AnimatedTween> {
       final double begin = widget.scale;
       return _buildTween(
         child: child,
-        tween: Tween(begin: begin, end: stopped ? begin : 1),
+        tween: Tween(begin: begin, end: inEnd ? begin : 1),
         animationBulder: (Widget child, double animationValue) {
           return Transform.scale(
             scale: animationValue,
@@ -109,7 +101,7 @@ class _AnimatedTweenState extends State<AnimatedTween> {
       final double begin = widget.angle * pi / 180;
       return _buildTween(
         child: child,
-        tween: Tween(begin: begin, end: stopped ? begin : 0),
+        tween: Tween(begin: begin, end: inEnd ? begin : 0),
         animationBulder: (Widget child, double animationValue) {
           return Transform.rotate(
             angle: animationValue,
@@ -126,7 +118,7 @@ class _AnimatedTweenState extends State<AnimatedTween> {
       final double begin = widget.opacity;
       return _buildTween(
         child: child,
-        tween: Tween(begin: begin, end: stopped ? begin : 1),
+        tween: Tween(begin: begin, end: inEnd ? begin : 1),
         animationBulder: (Widget child, double animationValue) {
           return Opacity(
             opacity: animationValue,
@@ -143,7 +135,7 @@ class _AnimatedTweenState extends State<AnimatedTween> {
       const double begin = 1;
       return _buildTween(
         child: child,
-        tween: Tween(begin: begin, end: stopped ? begin : 0),
+        tween: Tween(begin: begin, end: inEnd ? begin : 0),
         animationBulder: (Widget child, double value) {
           return Transform.translate(
             offset: Offset(widget.offset.dx * value, widget.offset.dy * value),
