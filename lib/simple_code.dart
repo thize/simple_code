@@ -50,6 +50,10 @@ class SimpleCode {
   }
 
   static double _sz(double size) {
+    if (size < 0) {
+      final double aux = size * -1;
+      return -min(_wsz(aux), _hsz(aux));
+    }
     return min(_wsz(size), _hsz(size));
   }
 
@@ -67,7 +71,5 @@ double wsz(double size) {
 }
 
 double hsz(double size) {
-  return SimpleCode._hsz(
-    size,
-  );
+  return SimpleCode._hsz(size);
 }

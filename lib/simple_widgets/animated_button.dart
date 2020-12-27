@@ -44,7 +44,7 @@ class AnimatedButton extends StatefulWidget {
 
 class _AnimatedButtonState extends State<AnimatedButton> {
   bool tapped = false;
-  
+
   @override
   Widget build(BuildContext context) {
     return AnimatedTween(
@@ -68,16 +68,25 @@ class _AnimatedButtonState extends State<AnimatedButton> {
     );
   }
 
-  void Function(TapDownDetails) get _onTapDown =>
-      (va) => setState(() => tapped = true);
+  void Function(TapDownDetails) get _onTapDown => (va) {
+        if (mounted) {
+          setState(() => tapped = true);
+        }
+      };
 
-  void Function() get _onTapCancel => () => setState(() => tapped = false);
+  void Function() get _onTapCancel => () {
+        if (mounted) {
+          setState(() => tapped = false);
+        }
+      };
 
   void Function() get _onTap => widget.onTap == null
       ? null
       : () async {
           await Future.delayed(Duration(milliseconds: widget.onTapDelay));
-          setState(() => tapped = false);
+          if (mounted) {
+            setState(() => tapped = false);
+          }
           widget.onTap();
         };
 }

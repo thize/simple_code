@@ -35,10 +35,12 @@ class _AnimatedTweenState extends State<AnimatedTween> {
   bool inEnd = true;
 
   Future _initState() async {
-    await Future.delayed(widget.delay ?? Duration());
-    setState(() {
-      inEnd = widget.inEnd;
-    });
+    await Future.delayed(widget.delay ?? const Duration());
+    if (mounted) {
+      setState(() {
+        inEnd = widget.inEnd;
+      });
+    }
   }
 
   @override

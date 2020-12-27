@@ -1,3 +1,7 @@
+##  4.0.7 [12/26/2020]
+* [Fix] mounted setState
+* [Fix] Negative value on sz
+
 ##  4.0.6 [10/06/2020]
 * [Fix] fix custom Route
 
