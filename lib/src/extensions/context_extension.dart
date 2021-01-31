@@ -76,5 +76,5 @@ extension ContextExtension on BuildContext {
   /// queue and displayed when the current one disappears.
   ///
   void showSnackBar(SnackBar snackbar) =>
-      ScaffoldMessenger.of(this).showSnackBar(snackbar);
+      Scaffold.of(this).showSnackBar(snackbar);
 }
