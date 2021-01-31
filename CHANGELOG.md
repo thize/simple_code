@@ -1,3 +1,9 @@
+##  5.0.0 [01/30/2021]
+* [Feat] More SimpleUtils functions
+* [Feat] More SimpleCode functions
+* [Feat] Simple Extension
+* [Update] Animation Widgets
+
 ##  4.0.7 [12/26/2020]
 * [Fix] mounted setState
 * [Fix] Negative value on sz

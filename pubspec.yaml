@@ -1,15 +1,19 @@
 name: simple_code
 description: Make Development Faster and Easier
-version: 4.0.7
+version: 5.0.0
 homepage: https://github.com/thize/simple_code
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  bordered_text: ^1.0.0
+  bordered_text: ^1.0.1
   flutter:
     sdk: flutter
+  logger: ^0.9.4
+  simple_animations: ^2.4.2
+  time: ^1.4.0
+  url_launcher: ^5.7.10
 
 dev_dependencies:
   lint: ^1.2.0
