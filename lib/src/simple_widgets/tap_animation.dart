@@ -2,20 +2,22 @@ part of simple_code;
 
 class TapAnimation extends StatefulWidget {
   const TapAnimation({
-    @required this.child,
     @required this.onTap,
-    @required this.builder,
-    @required this.duration,
-    @required this.delay,
-    @required this.curve,
-    @required this.angle,
-    @required this.opacity,
-    @required this.scale,
-    @required this.offset,
-    @required this.highlightColor,
-    @required this.splashColor,
+    this.child,
+    this.builder,
+    this.duration = const Duration(milliseconds: 600),
+    this.delay = Duration.zero,
+    this.curve = Curves.fastOutSlowIn,
+    this.angle,
+    this.opacity,
+    this.scale,
+    this.offset,
+    this.highlightColor,
+    this.splashColor,
     Key key,
-  }) : super(key: key);
+  })  : assert(opacity == null || opacity >= 0 && opacity <= 1),
+        assert(child != null || builder != null),
+        super(key: key);
 
   final void Function() onTap;
   final Widget child;
