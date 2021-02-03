@@ -8,8 +8,8 @@ class AnimatedButton extends StatelessWidget {
     this.child,
     this.builder,
     this.duration = const Duration(milliseconds: 800),
-    this.onTapDelay = 100,
     this.curve = Curves.easeOutCirc,
+    this.onTapDelay = 100,
     this.angle,
     this.opacity,
     this.scale,
@@ -40,7 +40,18 @@ class AnimatedButton extends StatelessWidget {
   final Color splashColor;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return TapAnimation(
+      onTap: onTap,
+      angle: angle ?? 0,
+      offset: offset ?? Offset.zero,
+      opacity: opacity ?? 1,
+      scale: scale ?? 1,
+      delay: Duration(milliseconds: onTapDelay),
+      curve: curve,
+      duration: duration,
+      builder: (context, child, tapped) => builder(tapped, 1),
+      highlightColor: highlightColor,
+      splashColor: splashColor,
       child: child,
     );
   }
