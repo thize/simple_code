@@ -31,7 +31,6 @@ class AnimatedTween extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimationWidget(
-      child,
       angle: angle,
       curve: curve,
       duration: duration,
@@ -41,6 +40,7 @@ class AnimatedTween extends StatelessWidget {
       offset: offset,
       reversed: inEnd,
       builder: builder,
+      child: child,
     );
   }
 }

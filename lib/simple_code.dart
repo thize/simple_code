@@ -15,6 +15,7 @@ import 'package:time/time.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 part 'src/extensions/bool_extension.dart';
+part 'src/extensions/color_extension.dart';
 part 'src/extensions/context_extension.dart';
 part 'src/extensions/iterable_extension.dart';
 part 'src/extensions/num_extension.dart';

@@ -3,8 +3,8 @@ part of simple_code;
 enum AnimationTyoe { normal, loop, mirror }
 
 class AnimationWidget extends StatelessWidget {
-  const AnimationWidget(
-    this.child, {
+  const AnimationWidget({
+    @required this.child,
     this.type = AnimationTyoe.normal,
     Key key,
     this.duration = const Duration(milliseconds: 600),

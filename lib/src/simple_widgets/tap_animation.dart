@@ -45,7 +45,6 @@ class _TapAnimationState extends State<TapAnimation> {
     Widget child = widget.child;
     if (_tapped) {
       child = AnimationWidget(
-        child,
         angle: widget.angle,
         curve: widget.curve,
         duration: widget.duration,
@@ -53,6 +52,7 @@ class _TapAnimationState extends State<TapAnimation> {
         opacity: widget.opacity,
         scale: widget.scale,
         reversed: true,
+        child: child,
       );
     }
     return InkWell(

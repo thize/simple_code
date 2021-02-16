@@ -1,3 +1,6 @@
+##  5.1.0 [02/16/2021]
+* [Feat] Color Extension
+
 ##  5.0.0 [01/30/2021]
 * [Feat] More SimpleUtils functions
 * [Feat] More SimpleCode functions
