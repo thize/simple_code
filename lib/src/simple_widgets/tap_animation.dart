@@ -21,7 +21,8 @@ class TapAnimation extends StatefulWidget {
 
   final void Function()? onTap;
   final Widget? child;
-  final Widget Function(BuildContext context, Widget child, bool tapped)?
+  final Widget Function(
+          BuildContext context, Widget? child, double animation, bool tapped)?
       builder;
   final Duration duration;
   final Duration delay;
@@ -42,7 +43,7 @@ class _TapAnimationState extends State<TapAnimation> {
 
   @override
   Widget build(BuildContext context) {
-    final Widget child = AnimationWidget(
+    return AnimationWidget(
       angle: widget.angle,
       curve: _tapped ? widget.curve.flipped : widget.curve,
       duration: widget.duration,
@@ -50,15 +51,18 @@ class _TapAnimationState extends State<TapAnimation> {
       opacity: widget.opacity,
       scale: widget.scale,
       reversed: _tapped,
-      child: widget.child,
-    );
-    return InkWell(
-      onTapDown: _onTapDown,
-      onTap: widget.onTap == null ? null : _onTap,
-      onTapCancel: _onTapCancel,
-      highlightColor: widget.highlightColor,
-      splashColor: widget.splashColor,
-      child: widget.builder?.call(context, child, _tapped) ?? child,
+      builder: (context, animation, w) {
+        return InkWell(
+          onTapDown: _onTapDown,
+          onTap: widget.onTap == null ? null : _onTap,
+          onTapCancel: _onTapCancel,
+          highlightColor: widget.highlightColor,
+          splashColor: widget.splashColor,
+          child:
+              widget.builder?.call(context, widget.child, animation, _tapped) ??
+                  widget.child,
+        );
+      },
     );
   }
 
