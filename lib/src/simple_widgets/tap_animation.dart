@@ -2,7 +2,7 @@ part of simple_code;
 
 class TapAnimation extends StatefulWidget {
   const TapAnimation({
-    @required this.onTap,
+    required this.onTap,
     this.child,
     this.builder,
     this.duration = const Duration(milliseconds: 600),
@@ -14,14 +14,14 @@ class TapAnimation extends StatefulWidget {
     this.offset = Offset.zero,
     this.highlightColor,
     this.splashColor,
-    Key key,
-  })  : assert(opacity == null || opacity >= 0 && opacity <= 1),
+    Key? key,
+  })  : assert(opacity >= 0 && opacity <= 1),
         assert(child != null || builder != null),
         super(key: key);
 
   final void Function() onTap;
-  final Widget child;
-  final Widget Function(BuildContext context, Widget child, bool tapped)
+  final Widget? child;
+  final Widget Function(BuildContext context, Widget child, bool tapped)?
       builder;
   final Duration duration;
   final Duration delay;
@@ -30,8 +30,8 @@ class TapAnimation extends StatefulWidget {
   final double opacity;
   final double scale;
   final Offset offset;
-  final Color highlightColor;
-  final Color splashColor;
+  final Color? highlightColor;
+  final Color? splashColor;
 
   @override
   _TapAnimationState createState() => _TapAnimationState();
@@ -42,35 +42,30 @@ class _TapAnimationState extends State<TapAnimation> {
 
   @override
   Widget build(BuildContext context) {
-    Widget child = widget.child;
-    if (_tapped) {
-      child = AnimationWidget(
-        angle: widget.angle,
-        curve: widget.curve,
-        duration: widget.duration,
-        offset: widget.offset,
-        opacity: widget.opacity,
-        scale: widget.scale,
-        reversed: true,
-        child: child,
-      );
-    }
+    final Widget child = AnimationWidget(
+      angle: widget.angle,
+      curve: _tapped ? widget.curve.flipped : widget.curve,
+      duration: widget.duration,
+      offset: widget.offset,
+      opacity: widget.opacity,
+      scale: widget.scale,
+      reversed: _tapped,
+      child: widget.child,
+    );
     return InkWell(
       onTapDown: _onTapDown,
       onTap: _onTap,
       onTapCancel: _onTapCancel,
       highlightColor: widget.highlightColor,
       splashColor: widget.splashColor,
-      child: widget.builder != null
-          ? widget.builder(context, child, _tapped)
-          : child,
+      child: widget.builder?.call(context, child, _tapped) ?? child,
     );
   }
 
   void _onTap() {
-    widget.delay.delay.whenComplete(() {
+    widget.onTap();
+    Future.delayed(widget.delay).whenComplete(() {
       setState(() => _tapped = false);
-      widget.onTap();
     });
   }
 

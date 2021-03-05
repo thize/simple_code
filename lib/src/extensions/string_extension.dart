@@ -26,11 +26,13 @@ extension StringExtension on String {
   }
 
   /// Return a bool if the string is null or empty
-  bool get isEmptyOrNull => this == null || isEmpty;
+  bool get isEmptyOrNull => isEmpty;
 
   /// Returns true if s is neither null, empty nor
   /// is solely made of whitespace characters.
-  bool get isNotBlank => this != null && trim().isNotEmpty;
+  bool get isNotBlank => trim().isNotEmpty;
+
+  bool get isBlank => trim().isEmpty;
 
   //! Strings
 
@@ -39,7 +41,7 @@ extension StringExtension on String {
   String removeAllWhiteSpace() => replaceAll(RegExp(r'\s+\b|\b\s'), '');
 
   /// Returns the string if it is not `null`, or the empty string otherwise
-  String get orEmpty => this ?? '';
+  String get orEmpty => this;
 
   ///Returns first letter of the string as Caps eg -> Flutter
   String get capitalize => length > 1
@@ -113,16 +115,13 @@ extension StringExtension on String {
   /// 1234567890 with begin 2 and end 6 => 12****7890
   /// 1234567890 with begin 1 => 1****67890
   ///
-  String hidePartial({int begin = 0, int end, String replace = '*'}) {
+  String hidePartial({int begin = 0, int? end, String replace = '*'}) {
     final buffer = StringBuffer();
-    if (length <= 1) {
-      return null;
-    }
+    if (length <= 1) return this;
     if (end == null) {
       end = (length / 2).round();
     } else {
       if (end > length) {
-        // ignore: parameter_assignments
         end = length;
       }
     }
@@ -139,35 +138,15 @@ extension StringExtension on String {
     }
     return buffer.toString();
   }
+}
 
-  //! Widgets
+extension StringNExtension on String? {
+  /// Return a bool if the string is null or empty
+  bool get isEmptyOrNull => this == null || this!.isEmpty;
 
-  /// Get Text Widget for the String
-  Text text({
-    TextStyle style,
-    StrutStyle strutStyle,
-    TextAlign textAlign,
-    TextDirection textDirection,
-    Locale locale,
-    bool softWrap,
-    TextOverflow overflow,
-    double textScaleFactor,
-    int maxLines,
-    String semanticsLabel,
-    TextWidthBasis textWidthBasis,
-  }) =>
-      Text(
-        this,
-        style: style,
-        strutStyle: strutStyle,
-        textAlign: textAlign,
-        textDirection: textDirection,
-        locale: locale,
-        softWrap: softWrap,
-        overflow: overflow,
-        textScaleFactor: textScaleFactor,
-        maxLines: maxLines,
-        semanticsLabel: semanticsLabel,
-        textWidthBasis: textWidthBasis,
-      );
+  /// Returns true if s is neither null, empty nor
+  /// is solely made of whitespace characters.
+  bool get isNotBlank => this != null && this!.trim().isNotEmpty;
+
+  bool get isBlank => this != null && this!.trim().isEmpty;
 }

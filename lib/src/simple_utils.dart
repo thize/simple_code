@@ -15,13 +15,10 @@ class Su {
   static Future<bool> get hasInternetConnection =>
       SimpleUtils.hasInternetConnection;
 
-  static void vibrate() => SimpleUtils.vibrate;
+  static void selectionClick() => SimpleUtils.selectionClick;
 
-  static Future<String> svgToString({@required String svgPath}) =>
+  static Future<String> svgToString({required String svgPath}) =>
       SimpleUtils.svgToString(svgPath: svgPath);
-
-  static Future<void> openInternetPage(String url) =>
-      SimpleUtils.openInternetPage(url);
 }
 
 class SimpleUtils {
@@ -35,9 +32,6 @@ class SimpleUtils {
 
   static bool get isMobile => Platform.isAndroid || Platform.isIOS;
 
-  @Deprecated('Change to hasInternetConnection')
-  static Future<bool> get internetConnection async => hasInternetConnection;
-
   static Future<bool> get hasInternetConnection async {
     try {
       final result = await InternetAddress.lookup('example.com');
@@ -49,25 +43,16 @@ class SimpleUtils {
     }
   }
 
-  static Future<void> openInternetPage(String url) async {
-    try {
-      await launch(url);
-    } catch (e) {
-      SimpleCode.log('openInternetPage', LogType.error);
-    }
-  }
-
-  static void vibrate() {
+  static void selectionClick() {
     HapticFeedback.selectionClick();
   }
 
   static String enumToString(enumValue) => enumValue.toString().split('.').last;
 
-  static Future<String> svgToString({@required String svgPath}) async {
+  static Future<String> svgToString({required String svgPath}) async {
     return rootBundle.loadString(svgPath);
   }
 
-  /// Get Random Primary Color
   static Color get randomPrimaryColor =>
       Colors.primaries[Random().nextInt(Colors.primaries.length)];
 }

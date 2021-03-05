@@ -1,40 +1,7 @@
-include: package:lint/analysis_options.yaml
+include: package:lint/analysis_options_package.yaml
 
 linter:
   rules:
-    # ------ Disable individual rules ----- #
-    #                 ---                   #
-    # Turn off what you don't like.         #
-    # ------------------------------------- #
-
-    # Use parameter order as in json response
-    always_put_required_named_parameters_first: true
-    
-    # Util classes are awesome!
     avoid_classes_with_only_static_members: false
-
-    # ------ Enable individual rules ------ #
-    #                 ---                   #
-    # These rules here are good but too     #
-    # opinionated to enable them by default #
-    # ------------------------------------- #
-
     avoid_setters_without_getters: false
-    
-    use_function_type_syntax_for_parameters: false
-
-    # Make constructors the first thing in every class
-    sort_constructors_first: true
-
-    # The new tabs vs. spaces. Choose wisely
-    prefer_single_quotes: true
-    prefer_double_quotes: false
-
-    type_annotate_public_apis: false
-    
-    # Blindly follow the Flutter code style, which prefers types everywhere
-    always_specify_types: false
-    avoid_annotating_with_dynamic: true
-  
-    # Back to the 80s
-    lines_longer_than_80_chars: true
+    avoid_positional_boolean_parameters: ignore

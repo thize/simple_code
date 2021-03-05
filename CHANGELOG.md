@@ -1,31 +1,34 @@
-##  5.1.0 [02/16/2021]
+##  6.0.0 [2021/03/04]
+* Migrate to null safety.
+
+##  5.1.0 [2021/02/16]
 * [Feat] Color Extension
 
-##  5.0.0 [01/30/2021]
+##  5.0.0 [2021/01/30]
 * [Feat] More SimpleUtils functions
 * [Feat] More SimpleCode functions
 * [Feat] Simple Extension
 * [Update] Animation Widgets
 
-##  4.0.7 [12/26/2020]
+##  4.0.7 [2020/12/26]
 * [Fix] mounted setState
 * [Fix] Negative value on sz
 
-##  4.0.6 [10/06/2020]
+##  4.0.6 [2020/10/06]
 * [Fix] fix custom Route
 
-##  4.0.5 [10/06/2020]
+##  4.0.5 [2020/10/06]
 * [Fix] showDialog without safeArea
 
-##  4.0.4 [10/01/2020]
+##  4.0.4 [2020/10/01]
 * [Fix] showDialog without black background
 * [Fix] sz function
 
-##  4.0.3 [07/09/2020]
+##  4.0.3 [2020/07/09]
 
 * Fix AnimatedTween delay
 
-##  4.0.2 [06/28/2020]
+##  4.0.2 [2020/06/28]
 
 * SimpleBilling extracted for its own package
 * SimpleRateMyApp extracted for its own package

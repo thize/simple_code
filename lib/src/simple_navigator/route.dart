@@ -57,22 +57,16 @@ class _RoutedPage extends PageRouteBuilder {
     switch (transitions[index]) {
       case Transition.zoomIn:
         return _zoomIn(animation, curve, child);
-        break;
       case Transition.slideFromRigth:
         return _slideFromSide(Alignment.centerRight, animation, curve, child);
-        break;
       case Transition.slideFromLeft:
         return _slideFromSide(Alignment.centerLeft, animation, curve, child);
-        break;
       case Transition.slideFromTop:
         return _slideFromSide(Alignment.topCenter, animation, curve, child);
-        break;
       case Transition.slideFromBottom:
         return _slideFromSide(Alignment.bottomCenter, animation, curve, child);
-        break;
       case Transition.fadeIn:
         return _fadeIn(animation, child);
-        break;
       default:
         throw 'Invalid navFrom';
     }

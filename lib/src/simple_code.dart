@@ -3,6 +3,8 @@ part of simple_code;
 enum LogType { info, verbose, debug, warning, error, wtf }
 
 class Sc {
+  static BuildContext? get context => SimpleCode.navigatorKey.currentContext;
+
   static void changeEmulatorSize(Size size) =>
       SimpleCode.changeEmulatorSize(size);
 
@@ -21,16 +23,19 @@ class Sc {
   static _Navigator get nav => SimpleCode.navigator;
 
   static GlobalKey<NavigatorState> get navKey => SimpleCode.navigatorKey;
+
+  static set setAnimationsFps(int fps) => SimpleCode._fps = fps;
 }
 
 class SimpleCode {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   static _Navigator navigator = _Navigator(navigatorKey);
   static Size _emuSize = const Size(360, 640);
-  static BuildContext get _context =>
-      navigatorKey?.currentState?.overlay?.context;
+  static int? _fps;
 
-  static Size get _screenSize => MediaQuery.of(_context).size;
+  static BuildContext? get context => SimpleCode.navigatorKey.currentContext;
+
+  static Size get _screenSize => MediaQuery.of(context!).size;
 
   // ignore: use_setters_to_change_properties
   static void changeEmulatorSize(Size size) => _emuSize = size;
@@ -39,19 +44,17 @@ class SimpleCode {
   static void changeNavigatorKey(GlobalKey<NavigatorState> newKey) =>
       navigatorKey = newKey;
 
-  static void _checkKey() {
-    if (_context == null) {
-      throw 'set navigatorKey: SimpleCode.navigatorKey on MaterialApp';
-    }
-  }
+  static set setAnimationsFps(int fps) => _fps = fps;
 
   static double _wsz(double size) {
-    _checkKey();
+    assert(context != null,
+        'set navigatorKey: SimpleCode.navigatorKey on MaterialApp');
     return (size / _emuSize.width) * _screenSize.width;
   }
 
   static double _hsz(double size) {
-    _checkKey();
+    assert(context != null,
+        'set navigatorKey: SimpleCode.navigatorKey on MaterialApp');
     return (size / _emuSize.height) * _screenSize.height;
   }
 
@@ -65,14 +68,24 @@ class SimpleCode {
 
   static final Logger _logger = Logger();
 
-  static void log(String log, [LogType type = LogType.info]) => {
-        LogType.info: _logger.i,
-        LogType.verbose: _logger.v,
-        LogType.debug: _logger.d,
-        LogType.warning: _logger.w,
-        LogType.error: _logger.e,
-        LogType.wtf: _logger.wtf,
-      }[type](log);
+  static void log(String log, [LogType type = LogType.info]) {
+    switch (type) {
+      case LogType.info:
+        return _logger.i(log);
+      case LogType.verbose:
+        return _logger.v(log);
+      case LogType.debug:
+        return _logger.d(log);
+      case LogType.warning:
+        return _logger.w(log);
+      case LogType.error:
+        return _logger.e(log);
+      case LogType.wtf:
+        return _logger.wtf(log);
+      default:
+        return _logger.i(log);
+    }
+  }
 
   ///Checks whether debug mode or not
   @Deprecated('Change to SimpleUtils.isDev')
@@ -88,14 +101,14 @@ class SimpleCode {
 
   static void useSz() => _clear(sz: true);
 
-  static void _clear({bool sz, bool hsz, bool wsz}) {
+  static void _clear({bool? sz, bool? hsz, bool? wsz}) {
     _useSz = sz ?? false;
     _useHsz = hsz ?? false;
     _useWsz = wsz ?? false;
   }
 
   static double _apply(double value) {
-    if (value == null || value.isInfinite) return value;
+    if (value.isInfinite) return value;
     if (_useWsz) return wsz(value);
     if (_useHsz) return hsz(value);
     if (_useSz) return sz(value);

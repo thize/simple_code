@@ -18,16 +18,6 @@ extension NumExtension on num {
         .toString();
   }
 
-  ///
-  /// Check if the number is null
-  ///
-  bool get isNull => this == null;
-
-  ///
-  /// Check if the number is not null
-  ///
-  bool get isNotNull => this != null;
-
   /// Returns if the number is even
   bool get isEven => this % 2 == 0;
 

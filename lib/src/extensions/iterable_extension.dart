@@ -79,7 +79,7 @@ extension IterableBasics<E> on Iterable<E> {
 
     for (final element in otherElementCounts.keys) {
       final countInThis = thisElementCounts[element] ?? 0;
-      if (countInThis < otherElementCounts[element]) {
+      if (countInThis < otherElementCounts[element]!) {
         return false;
       }
     }

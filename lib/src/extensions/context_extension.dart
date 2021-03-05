@@ -6,16 +6,16 @@ extension ContextExtension on BuildContext {
   MediaQueryData get mq => MediaQuery.of(this);
 
   /// Get MediaQuery Screen Size
-  Size get size => mq.size;
+  Size get mqSize => mq.size;
 
   /// Get MediaQuery Screen Padding
   EdgeInsets get padding => mq.padding;
 
   /// Get MediaQuery Screen Width
-  double get width => mq.size.width;
+  double get width => mqSize.width;
 
   /// Get MediaQuery Screen Height
-  double get height => mq.size.height;
+  double get height => mqSize.height;
 
   ///Returns Orientation using [MediaQuery]
   Orientation get orientation => mq.orientation;
@@ -36,7 +36,7 @@ extension ContextExtension on BuildContext {
   /// Returns The state from the closest instance of this class
   /// that encloses the given context.
   /// It is used for validating forms
-  FormState get form => Form.of(this);
+  FormState? get form => Form.of(this);
 
   ///
   /// Returns The current [Locale] of the app as specified in
@@ -49,7 +49,7 @@ extension ContextExtension on BuildContext {
   ///
   /// It is used for showing widgets on top of everything.
   ///
-  OverlayState get overlay => Overlay.of(this);
+  OverlayState? get overlay => Overlay.of(this);
 
   ///
   /// Insert the given widget into the overlay.
@@ -57,7 +57,7 @@ extension ContextExtension on BuildContext {
   ///
   OverlayEntry addOverlay(WidgetBuilder builder) {
     final entry = OverlayEntry(builder: builder);
-    overlay.insert(entry);
+    overlay?.insert(entry);
     return entry;
   }
 
@@ -76,5 +76,5 @@ extension ContextExtension on BuildContext {
   /// queue and displayed when the current one disappears.
   ///
   void showSnackBar(SnackBar snackbar) =>
-      Scaffold.of(this).showSnackBar(snackbar);
+      ScaffoldMessenger.of(this).showSnackBar(snackbar);
 }

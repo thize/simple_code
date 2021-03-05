@@ -1,11 +1,5 @@
 # SimpleCode
 
-### Simple Billing
-SimpleBilling extracted for its own package: https://pub.dev/packages/simple_billing
-
-### Simple RateMyApp
-SimpleRateMyApp extracted for its own package: https://pub.dev/packages/simple_rate_my_app
-
 ## Utils Widgets
 ExpandedText
 ```dart
@@ -14,17 +8,11 @@ ExpandedText(
   minFontSize: 2,
 ),
 ```
-ExpandedIcon
-```dart
-ExpandedIcon(
-  Icons.wifi,
-),
-```
-AnimatedButton  
-<img src="demo/animated_button.gif" width="360" height="640">
+TapAnimation  
+<img src="https://github.com/thize/simple_code/blob/master/demo/animated_button.gif" width="360" height="640">
 
 ```dart
-AnimatedButton(
+TapAnimation(
   onTap: () {},
   scale: 1.3,
   angle: 30,
@@ -38,11 +26,11 @@ AnimatedButton(
 ),
 ```
 
-AnimatedTween  
-<img src="demo/animated_tween.gif" width="360" height="640">
+AnimationWidget  
+<img src="https://github.com/thize/simple_code/blob/master/demo/animated_tween.gif" width="360" height="640">
 
 ```dart
-AnimatedTween(
+AnimationWidget(
   offset: Offset(450, 0),
   scale: 4.5,
   angle: 250,
@@ -57,13 +45,38 @@ AnimatedTween(
 
 ## Simple Responsivity
 Responsivity izier  
-wsz = size in relation to prototype Width  
-hsz = size in relation to prototype Height  
-sz = best between wsz and hsz  
+wsz = size in relation to prototype Width
+hsz = size in relation to prototype Height
+sz = min between wsz and hsz
+
+you can set the default type with Sc.useHsz() ||  Sc.useWsz() ||  Sc.useSz(), and to use is just:
+
+```dart
+150.a or apply(150)
+```
+
 ```dart
 Container(
     width: wsz(150),
     height: hsz(150),
+    color: Colors.red,
+),
+
+Container(
+    width: 150.wsz,
+    height: 150.hsz,
+    color: Colors.red,
+),
+
+Container(
+    width: apply(150),
+    height: apply(150),
+    color: Colors.red,
+),
+
+Container(
+    width: 150.a,
+    height: 150.a,
     color: Colors.red,
 ),
 ```
@@ -88,7 +101,7 @@ SimpleCode.navigator.showDialog(
 ```
 
 Navigator withCustomTransitions  
-<img src="demo/custom_page_route.gif" width="360" height="640">
+<img src="https://github.com/thize/simple_code/blob/master/demo/custom_page_route.gif" width="360" height="640">
 
 ```dart
 SimpleCode.navigator.push(SimpleRoute.custom(
@@ -113,8 +126,13 @@ enum Transition {
 ## Simple Utils
 ```dart
 SimpleUtils.isDev
-SimpleUtils.internetConnection
-SimpleUtils.enumValueString
+SimpleUtils.isMobile
+SimpleUtils.isDesktop
+SimpleUtils.randomPrimaryColor
+SimpleUtils.hasInternetConnection
+SimpleUtils.enumValueString(Transition.fadeIn)
+SimpleUtils.selectionClick
+SimpleUtils.svgToString('assets/example.svg')
 ```
 
 
