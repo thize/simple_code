@@ -2,7 +2,7 @@ part of simple_code;
 
 class TapAnimation extends StatefulWidget {
   const TapAnimation({
-    required this.onTap,
+    this.onTap,
     this.child,
     this.builder,
     this.duration = const Duration(milliseconds: 600),
@@ -19,7 +19,7 @@ class TapAnimation extends StatefulWidget {
         assert(child != null || builder != null),
         super(key: key);
 
-  final void Function() onTap;
+  final void Function()? onTap;
   final Widget? child;
   final Widget Function(BuildContext context, Widget child, bool tapped)?
       builder;
@@ -54,7 +54,7 @@ class _TapAnimationState extends State<TapAnimation> {
     );
     return InkWell(
       onTapDown: _onTapDown,
-      onTap: _onTap,
+      onTap: widget.onTap == null ? null : _onTap,
       onTapCancel: _onTapCancel,
       highlightColor: widget.highlightColor,
       splashColor: widget.splashColor,
@@ -63,7 +63,7 @@ class _TapAnimationState extends State<TapAnimation> {
   }
 
   void _onTap() {
-    widget.onTap();
+    widget.onTap!();
     Future.delayed(widget.delay).whenComplete(() {
       setState(() => _tapped = false);
     });
