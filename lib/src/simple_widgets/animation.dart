@@ -59,16 +59,6 @@ class _AnimationWidgetState extends State<AnimationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.child == null) {
-      return _buildDoubleAnimation(
-        child: widget.child,
-        start: 1, // ! Builder
-        end: 0,
-        builder: (context, child, animationValue) {
-          return widget.builder!(context, animationValue, child);
-        },
-      );
-    }
     return _buildDoubleAnimation(
       child: widget.child,
       start: widget.scale, // ! Scale
@@ -102,8 +92,9 @@ class _AnimationWidgetState extends State<AnimationWidget> {
                             start: 1, // ! Builder
                             end: 0,
                             builder: (context, child, animationValue) {
-                              widget.builder
-                                  ?.call(context, animationValue, child);
+                              final result = widget.builder
+                                      ?.call(context, animationValue, child) ??
+                                  child;
                               if (widget.opacity != 1) {
                                 return _AnimatedOpacity(
                                   duration: widget.duration,
@@ -111,10 +102,10 @@ class _AnimationWidgetState extends State<AnimationWidget> {
                                   opacity: widget.opacity,
                                   reversed: widget.reversed,
                                   delay: widget.delay,
-                                  child: child!,
+                                  child: result!,
                                 );
                               }
-                              return child!;
+                              return result!;
                             },
                           ),
                         );
