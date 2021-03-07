@@ -1,3 +1,6 @@
+##  6.2.0 [2021/03/05]
+* [Feat] forceDev with SimpleUtils.forceDev = true;
+
 ##  6.1.2 [2021/03/05]
 * Fix TapAnimation onTap
 

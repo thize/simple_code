@@ -1,6 +1,8 @@
 part of simple_code;
 
 class Su {
+  static set forceDev(bool newValue) => SimpleUtils.forceDev = newValue;
+
   static bool get isDev => SimpleUtils.isDev;
 
   static bool get isMobile => SimpleUtils.isMobile;
@@ -22,7 +24,9 @@ class Su {
 }
 
 class SimpleUtils {
-  static bool get isDev => foundation.kDebugMode;
+  static bool forceDev = false;
+
+  static bool get isDev => forceDev || foundation.kDebugMode;
 
   static String enumValueString(enumValue) =>
       enumValue.toString().split('.').last;
