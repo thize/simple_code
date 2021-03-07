@@ -29,6 +29,30 @@ class ExpandedText extends StatefulWidget {
   })  : textSpan = null,
         super(key: key);
 
+  const ExpandedText.rich(
+    TextSpan this.textSpan, {
+    Key? key,
+    this.textKey,
+    this.style,
+    this.strutStyle,
+    this.minFontSize = 12,
+    this.maxFontSize = double.infinity,
+    this.stepGranularity = 1,
+    this.presetFontSizes,
+    this.group,
+    this.textAlign,
+    this.textDirection,
+    this.locale,
+    this.softWrap,
+    this.wrapWords = true,
+    this.overflow,
+    this.overflowReplacement,
+    this.textScaleFactor,
+    this.maxLines,
+    this.semanticsLabel,
+  })  : data = null,
+        super(key: key);
+
   /// Sets the key for the resulting [Text] widget.
   ///
   /// This allows you to find the actual `Text` widget built by `AutoSizeText`.

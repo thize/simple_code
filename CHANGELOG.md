@@ -1,3 +1,6 @@
+##  6.2.1 [2021/03/07]
+* [Feat] ExpandedText.rich
+
 ##  6.2.0 [2021/03/05]
 * [Feat] forceDev with SimpleUtils.forceDev = true;
 
