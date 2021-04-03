@@ -1,6 +1,6 @@
 name: simple_code
 description: Make Development Faster and Easier
-version: 6.2.1
+version: 6.2.2
 homepage: https://github.com/thize/simple_code
 
 environment:
@@ -9,9 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  logger: ^1.0.0-nullsafety.0
-  simple_animations: ^3.0.0
+  logger: ^1.0.0
+  simple_animations: ^3.0.3
   auto_size_text: ^3.0.0-nullsafety.0
 
 dev_dependencies:
-  lint: ^1.5.2
+  lint: ^1.5.3

@@ -69,7 +69,7 @@ class _TapAnimationState extends State<TapAnimation> {
   void _onTap() {
     widget.onTap!();
     Future.delayed(widget.delay).whenComplete(() {
-      setState(() => _tapped = false);
+      if (mounted) setState(() => _tapped = false);
     });
   }
 

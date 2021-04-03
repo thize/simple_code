@@ -1,3 +1,6 @@
+##  6.2.2 [2021/03/07]
+* [Fix] Tap Animation
+
 ##  6.2.1 [2021/03/07]
 * [Feat] ExpandedText.rich
 
