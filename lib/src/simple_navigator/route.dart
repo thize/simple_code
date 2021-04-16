@@ -1,6 +1,6 @@
 part of simple_code;
 
-enum Transition {
+enum SCTransition {
   fadeIn,
   slideFromBottom,
   slideFromRigth,
@@ -26,7 +26,7 @@ class SimpleRoute {
 
   static PageRoute custom(
     Widget page, {
-    List<Transition> transitions = const [Transition.fadeIn],
+    List<SCTransition> transitions = const [SCTransition.fadeIn],
     Curve curve = Curves.linear,
     Duration duration = const Duration(milliseconds: 600),
   }) {
@@ -47,25 +47,25 @@ class _RoutedPage extends PageRouteBuilder {
   final Widget page;
   final Duration duration;
   final Curve curve;
-  final List<Transition> transitions;
+  final List<SCTransition> transitions;
 
   static Widget _transition(Animation<double> animation, Curve curve,
-      List<Transition> transitions, int index, Widget widget) {
+      List<SCTransition> transitions, int index, Widget widget) {
     final Widget child = transitions.length - 1 == index
         ? widget
         : _transition(animation, curve, transitions, index + 1, widget);
     switch (transitions[index]) {
-      case Transition.zoomIn:
+      case SCTransition.zoomIn:
         return _zoomIn(animation, curve, child);
-      case Transition.slideFromRigth:
+      case SCTransition.slideFromRigth:
         return _slideFromSide(Alignment.centerRight, animation, curve, child);
-      case Transition.slideFromLeft:
+      case SCTransition.slideFromLeft:
         return _slideFromSide(Alignment.centerLeft, animation, curve, child);
-      case Transition.slideFromTop:
+      case SCTransition.slideFromTop:
         return _slideFromSide(Alignment.topCenter, animation, curve, child);
-      case Transition.slideFromBottom:
+      case SCTransition.slideFromBottom:
         return _slideFromSide(Alignment.bottomCenter, animation, curve, child);
-      case Transition.fadeIn:
+      case SCTransition.fadeIn:
         return _fadeIn(animation, child);
       default:
         throw 'Invalid navFrom';

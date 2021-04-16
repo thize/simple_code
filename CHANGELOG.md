@@ -1,3 +1,6 @@
+##  6.3.0 [2021/03/07]
+* Transition to SCTransition
+
 ##  6.2.2 [2021/03/07]
 * [Fix] Tap Animation
 
