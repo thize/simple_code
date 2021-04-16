@@ -1,16 +1,16 @@
 part of simple_code;
 
 /// Extension Methods & Widgets for the numbers
-extension NumExtension on num {
+extension SCNumExtension on num {
   ///
-  /// Use this extension method to get
+  /// Use this extension SCmethod to get
   /// fixed values after decimal with defined length.
   ///
   String toDoubleStringAsFixed({int digit = 2}) =>
       toStringAsFixed(truncateToDouble() == this ? 0 : digit);
 
   ///
-  /// Use this extension method to get
+  /// Use this extension SCmethod to get
   /// precised values after decimal with defined length.
   ///
   String toDoubleStringAsPrecised({int length = 4}) {
@@ -52,7 +52,7 @@ extension NumExtension on num {
 }
 
 /// Extension method for integers.
-extension IntExtension on int {
+extension SCIntExtension on int {
   int get random => Random().nextInt(this);
 
   List<Widget> builder(Widget Function(int index) element) {

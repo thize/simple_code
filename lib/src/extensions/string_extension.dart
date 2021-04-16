@@ -1,7 +1,7 @@
 part of simple_code;
 
 /// Extension Methods & Widgets for the strings
-extension StringExtension on String {
+extension SCStringExtension on String {
   //! Checks
 
   ///
@@ -140,7 +140,7 @@ extension StringExtension on String {
   }
 }
 
-extension StringNExtension on String? {
+extension SCStringNExtension on String? {
   /// Return a bool if the string is null or empty
   bool get isEmptyOrNull => this == null || this!.isEmpty;
 

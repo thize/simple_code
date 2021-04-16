@@ -1,7 +1,7 @@
 part of simple_code;
 
-/// Utility extension methods for the native [Iterable] class.
-extension IterableBasics<E> on Iterable<E> {
+/// Utility extension SCmethods for the native [Iterable] class.
+extension SCIterableBasics<E> on Iterable<E> {
   /// Alias for [Iterable]`.every`.
   bool all(bool test(E element)) => every(test);
 

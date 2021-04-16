@@ -1,6 +1,6 @@
 part of simple_code;
 
-extension HexColor on Color {
+extension SCHexColor on Color {
   /// String is in the format "aabbcc" or "ffaabbcc" with 
   /// an optional leading "#".
   static Color fromHex(String hexString) {

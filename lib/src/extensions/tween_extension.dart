@@ -1,6 +1,6 @@
 part of simple_code;
 
-extension ColorExtension on Color {
+extension SCColorExtension on Color {
   /// Returns a [ColorTween] from [this] color to the given [end] color
   ///
   ColorTween tweenTo(Color end) {
@@ -8,7 +8,7 @@ extension ColorExtension on Color {
   }
 }
 
-extension OffsetExtension on Offset {
+extension SCOffsetExtension on Offset {
   /// Returns a [Tween<Offset>] from [this] value to the given [end] value
   ///
   Tween<Offset> tweenTo(Offset end) {

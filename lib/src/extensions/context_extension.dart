@@ -1,7 +1,7 @@
 part of simple_code;
 
 /// Extension for general basic [Context]
-extension ContextExtension on BuildContext {
+extension SCContextExtension on BuildContext {
   /// To get a [MediaQuery] directly.
   MediaQueryData get mq => MediaQuery.of(this);
 
